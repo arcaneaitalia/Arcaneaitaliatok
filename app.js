@@ -356,3 +356,24 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   });
 })();
+let deferredInstallPrompt = null;
+
+window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e;
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.getElementById("install");
+
+    if (!btn) return;
+
+    btn.onclick = async () => {
+        if (deferredInstallPrompt) {
+            await deferredInstallPrompt.prompt();
+            deferredInstallPrompt = null;
+        } else {
+            alert("Apri il menu ⋮ di Chrome e scegli «Installa app».");
+        }
+    };
+});
