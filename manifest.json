@@ -1,0 +1,17 @@
+{
+  "name": "Arcanea Italia",
+  "short_name": "Arcanea",
+  "description": "Arcanea Italia — simboli, archetipi e Matrice Arcanea®",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#050b09",
+  "theme_color": "#07110d",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

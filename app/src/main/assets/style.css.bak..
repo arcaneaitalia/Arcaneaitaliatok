@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    min-height:100vh;
+    background:
+      radial-gradient(circle at 50% 0%,#29453b 0%,#172720 35%,#0b1210 100%);
+    color:#eee8d8;
+    font-family:Montserrat,sans-serif;
+}
+
+body:before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.16;
+    background-image:
+      radial-gradient(#d7c68d 1px,transparent 1px);
+    background-size:34px 34px;
+}
+
+#app{
+    position:relative;
+    max-width:900px;
+    margin:auto;
+    padding-bottom:30px;
+}
+
+.hero{
+    text-align:center;
+    padding:30px 18px 20px;
+}
+
+.logo{
+    width:145px;
+    height:145px;
+    object-fit:contain;
+    border-radius:28px;
+    margin-bottom:12px;
+    filter:drop-shadow(0 8px 22px #0008);
+}
+
+h1,h2,strong{
+    font-family:Cinzel,serif;
+}
+
+h1{
+    font-size:clamp(25px,7vw,42px);
+    letter-spacing:2px;
+}
+
+.hero p{
+    margin-top:10px;
+    opacity:.75;
+    font-size:14px;
+}
+
+main{
+    padding:0 16px;
+}
+
+.welcome{
+    text-align:center;
+    padding:15px 5px 25px;
+}
+
+.welcome h2{
+    font-size:22px;
+    margin-bottom:7px;
+}
+
+.welcome p{
+    opacity:.7;
+    font-size:14px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
+}
+
+.card{
+    border:1px solid #c7b77b55;
+    border-radius:22px;
+    padding:20px 15px;
+    min-height:175px;
+    color:#eee8d8;
+    background:linear-gradient(145deg,#263c33dd,#101a16ee);
+    box-shadow:0 10px 28px #0005;
+    cursor:pointer;
+    transition:.2s;
+}
+
+.card:active{
+    transform:scale(.97);
+}
+
+.card:hover{
+    border-color:#d7c77f;
+}
+
+.card .icon{
+    display:block;
+    font-size:37px;
+    margin-bottom:12px;
+}
+
+.card strong{
+    display:block;
+    font-size:17px;
+    margin-bottom:8px;
+}
+
+.card small{
+    display:block;
+    line-height:1.5;
+    opacity:.7;
+}
+
+.card b{
+    display:block;
+    margin-top:14px;
+    font-size:11px;
+    letter-spacing:1px;
+    color:#d9c979;
+}
+
+.featured{
+    grid-column:1/-1;
+    min-height:190px;
+    background:
+      radial-gradient(circle at 50% 20%,#3d5947,#111b16 70%);
+}
+
+.booking{
+    margin-top:20px;
+    padding:27px 20px;
+    border:1px solid #c7b77b55;
+    border-radius:25px;
+    text-align:center;
+    background:#111a16dd;
+}
+
+.booking h2{
+    font-size:20px;
+}
+
+.booking p{
+    margin:10px 0 18px;
+    opacity:.72;
+    font-size:14px;
+}
+
+button{
+    font-family:inherit;
+}
+
+.booking button,
+.modalbox .action{
+    border:0;
+    border-radius:999px;
+    padding:14px 24px;
+    background:linear-gradient(90deg,#c4ad5d,#e0cd82);
+    color:#171b16;
+    font-weight:700;
+    letter-spacing:.7px;
+    cursor:pointer;
+}
+
+footer{
+    text-align:center;
+    padding:30px 15px 10px;
+    opacity:.65;
+    font-size:12px;
+}
+
+footer strong{
+    display:block;
+    margin-bottom:6px;
+}
+
+.modal{
+    position:fixed;
+    inset:0;
+    z-index:10;
+    background:#000b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.hidden{
+    display:none;
+}
+
+.modalbox{
+    width:min(600px,100%);
+    max-height:90vh;
+    overflow:auto;
+    border:1px solid #c7b77b88;
+    border-radius:25px;
+    padding:28px 22px;
+    background:linear-gradient(145deg,#263b32,#101714);
+    box-shadow:0 20px 70px #000;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:15px;
+    top:10px;
+    border:0;
+    background:none;
+    color:#eee;
+    font-size:32px;
+    cursor:pointer;
+}
+
+.modalbox h2{
+    font-family:Cinzel,serif;
+    color:#e0cd82;
+    margin-bottom:14px;
+    padding-right:35px;
+}
+
+.modalbox p{
+    line-height:1.7;
+    font-size:14px;
+    opacity:.9;
+}
+
+.result{
+    text-align:center;
+    padding:10px;
+}
+
+.symbol{
+    font-size:70px;
+    margin:12px;
+}
+
+.answer{
+    font-family:Cinzel,serif;
+    font-size:30px;
+    color:#dfcc7b;
+    margin:20px 0;
+}
+
+.service{
+    text-align:center;
+}
+
+.service .preview{
+    margin:18px 0;
+    padding:18px;
+    border-radius:18px;
+    background:#0a110eaa;
+}
+
+.service .price{
+    font-family:Cinzel,serif;
+    color:#dfcc7b;
+    font-size:24px;
+    margin:12px;
+}
+
+@media(max-width:600px){
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .featured{
+        grid-column:auto;
+    }
+
+    .card{
+        min-height:155px;
+    }
+}

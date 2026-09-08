@@ -1,0 +1,17 @@
+{
+  "name":"Arcanea Italia",
+  "short_name":"Arcanea",
+  "description":"Arcanea Italia — Tarocchi, Rune, Tema Natale, Compatibilità e Matrice Arcanea®",
+  "start_url":"./index.html",
+  "display":"standalone",
+  "orientation":"portrait",
+  "background_color":"#050907",
+  "theme_color":"#07110d",
+  "icons":[
+    {
+      "src":"assets/logo.png",
+      "sizes":"512x512",
+      "type":"image/png"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+.form{
+    display:grid;
+    gap:12px;
+    margin-top:20px;
+}
+
+.form input,
+.service input{
+    width:100%;
+    padding:14px 16px;
+    border-radius:14px;
+    border:1px solid #c7b77b55;
+    background:#0b1411;
+    color:#eee8d8;
+    font-family:Montserrat,sans-serif;
+    font-size:15px;
+    outline:none;
+}
+
+.form input:focus,
+.service input:focus{
+    border-color:#d9c979;
+}
+
+.matrix-signature{
+    margin:15px 0;
+    padding:14px;
+    border-radius:15px;
+    background:#0a110eaa;
+    font-family:Cinzel,serif;
+    line-height:1.8;
+}
+
+.matrix-number{
+    width:90px;
+    height:90px;
+    margin:22px auto 12px;
+    border:1px solid #d7c77f;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:Cinzel,serif;
+    font-size:38px;
+    color:#dfcc7b;
+}
+
+.result h3{
+    font-family:Cinzel,serif;
+    color:#dfcc7b;
+    margin:10px 0;
+}
+
+.note{
+    margin:18px 0;
+    font-size:12px !important;
+    opacity:.6 !important;
+}
+
+.signs{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+    margin-top:18px;
+}
+
+.signs .action{
+    padding:12px 8px;
+}
+
+.service h3{
+    font-family:Cinzel,serif;
+    color:#dfcc7b;
+    margin:20px 0 8px;
+}
+
+@media(max-width:600px){
+
+    .signs{
+        grid-template-columns:1fr 1fr;
+    }
+
+}

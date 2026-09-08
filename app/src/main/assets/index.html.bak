@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#101b17">
+<meta name="description" content="ARCANEA ITALIA — Tarocchi, Rune, Astrologia e Matrice Arcanea">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="style.css">
+<title>ARCANEA ITALIA</title>
+</head>
+
+<body>
+
+<div id="app">
+
+<header class="hero">
+    <img src="logo.png" class="logo" alt="Arcanea Italia">
+    <h1>🔮 ARCANEA ITALIA</h1>
+    <p>La soglia tra simbolo, intuizione e conoscenza.</p>
+</header>
+
+<main>
+
+<section class="welcome">
+    <h2>Benvenuta nella Soglia</h2>
+    <p>Esplora ogni giorno i simboli di Arcanea.</p>
+</section>
+
+<div class="grid">
+
+<button class="card free" onclick="showDaily('tarot')">
+    <span class="icon">🃏</span>
+    <strong>Tarocco del Giorno</strong>
+    <small>Scopri il messaggio di oggi</small>
+</button>
+
+<button class="card free" onclick="showDaily('rune')">
+    <span class="icon">ᚱ</span>
+    <strong>Runa del Giorno</strong>
+    <small>La runa che accompagna la tua giornata</small>
+</button>
+
+<button class="card free" onclick="showDaily('horoscope')">
+    <span class="icon">🌙</span>
+    <strong>Oroscopo Giornaliero</strong>
+    <small>Il tuo messaggio astrologico</small>
+</button>
+
+<button class="card free" onclick="question()">
+    <span class="icon">❓</span>
+    <strong>Domanda</strong>
+    <small>Sì · No · Non ancora</small>
+</button>
+
+<button class="card paid" onclick="openService('natal')">
+    <span class="icon">✨</span>
+    <strong>Tema Natale</strong>
+    <small>Estratto gratuito · Analisi completa</small>
+    <b>APPROFONDISCI →</b>
+</button>
+
+<button class="card paid" onclick="openService('compatibility')">
+    <span class="icon">💞</span>
+    <strong>Compatibilità</strong>
+    <small>Scopri la dinamica tra due persone</small>
+    <b>APPROFONDISCI →</b>
+</button>
+
+<button class="card paid featured" onclick="openService('matrix')">
+    <span class="icon">🜂</span>
+    <strong>Matrice Arcanea®</strong>
+    <small>Il metodo simbolico di Arcanea Italia</small>
+    <b>SCOPRI LA MATRICE →</b>
+</button>
+
+</div>
+
+<section class="booking">
+    <h2>📅 Vuoi andare più in profondità?</h2>
+    <p>Prenota la tua consulenza direttamente con Arcanea Italia.</p>
+    <button onclick="openSetmore()">PRENOTA SU SETMORE</button>
+</section>
+
+</main>
+
+<footer>
+    <strong>🔮 ARCANEA ITALIA</strong>
+    <p>Simboli · Astrologia · Tarocchi · Rune · Matrice Arcanea®</p>
+</footer>
+
+</div>
+
+<div id="modal" class="modal hidden">
+    <div class="modalbox">
+        <button class="close" onclick="closeModal()">×</button>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

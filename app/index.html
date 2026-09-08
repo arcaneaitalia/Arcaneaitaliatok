@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#07110d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.json">
+<title>🔮 Arcanea Italia</title>
+
+<style>
+:root{
+ --bg:#050907;
+ --panel:#0c1813;
+ --panel2:#10231b;
+ --gold:#d8b965;
+ --gold2:#f0d98b;
+ --text:#f5edda;
+ --muted:#aaa28e;
+ --line:#554a31;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;
+ background:
+ radial-gradient(circle at 50% -10%,#244b3a 0,#0b1913 38%,#050907 75%);
+ color:var(--text);
+ font-family:Georgia,"Times New Roman",serif;
+ min-height:100vh;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+#splash{
+ position:fixed;
+ inset:0;
+ z-index:100;
+ background:#050907;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ text-align:center;
+}
+#splash img{
+ width:230px;
+ height:230px;
+ object-fit:cover;
+ border-radius:28px;
+ box-shadow:0 0 55px rgba(216,185,101,.28);
+}
+.splash-title{
+ margin-top:25px;
+ font-size:26px;
+ letter-spacing:3px;
+}
+.splash-sub{
+ color:var(--muted);
+ margin-top:10px;
+}
+#app{
+ display:none;
+ max-width:540px;
+ margin:auto;
+ padding:15px 15px 100px;
+}
+header{text-align:center;padding:10px 0 20px}
+header img{
+ width:75px;
+ height:75px;
+ object-fit:cover;
+ border-radius:18px;
+}
+.brand{
+ font-size:24px;
+ letter-spacing:2px;
+ margin-top:10px;
+}
+.subtitle{color:var(--muted)}
+.screen{display:none}
+.screen.active{display:block}
+.grid{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:12px;
+}
+.card{
+ min-height:145px;
+ padding:18px 15px;
+ border-radius:20px;
+ background:linear-gradient(145deg,var(--panel2),var(--panel));
+ border:1px solid rgba(216,185,101,.24);
+ box-shadow:0 10px 25px #0005;
+ transition:.15s;
+}
+.card:active{transform:scale(.97)}
+.card .emoji{font-size:34px}
+.card h2{font-size:18px;margin:10px 0 5px}
+.card p{font-size:13px;color:var(--muted);margin:0;line-height:1.4}
+.section{
+ margin-top:15px;
+ padding:20px;
+ border-radius:21px;
+ background:rgba(9,20,15,.94);
+ border:1px solid rgba(216,185,101,.22);
+}
+h1{font-size:27px;margin:0 0 10px}
+h2{font-size:20px}
+p{line-height:1.55}
+.back{
+ border:0;
+ background:none;
+ color:var(--gold2);
+ padding:7px 0 13px;
+}
+input,select{
+ width:100%;
+ background:#09120f;
+ color:var(--text);
+ border:1px solid #655738;
+ border-radius:12px;
+ padding:13px;
+ margin:6px 0;
+ outline:none;
+}
+input:focus{border-color:var(--gold)}
+.btn{
+ width:100%;
+ padding:14px;
+ border:0;
+ border-radius:14px;
+ margin-top:10px;
+ background:linear-gradient(135deg,var(--gold),var(--gold2));
+ color:#151108;
+ font-weight:bold;
+}
+.btn.dark{
+ background:#182b22;
+ color:var(--text);
+ border:1px solid #665838;
+}
+.result{
+ margin-top:15px;
+ padding:17px;
+ border-radius:16px;
+ background:#11251c;
+ border-left:3px solid var(--gold);
+}
+.result h2{margin-top:0;color:var(--gold2)}
+.lock{
+ margin-top:15px;
+ padding:20px;
+ border-radius:17px;
+ text-align:center;
+ background:linear-gradient(145deg,#182c23,#0b1511);
+ border:1px solid rgba(216,185,101,.24);
+}
+.price{
+ font-size:24px;
+ color:var(--gold2);
+ margin:12px 0;
+}
+.service{
+ margin-top:15px;
+ padding:17px;
+ border-radius:17px;
+ background:#0d1c16;
+ border:1px solid #4f442d;
+}
+.service h2{margin-top:0}
+.small{font-size:12px;color:var(--muted)}
+.nav{
+ position:fixed;
+ z-index:20;
+ bottom:0;
+ left:0;
+ right:0;
+ margin:auto;
+ max-width:540px;
+ display:flex;
+ justify-content:space-around;
+ background:#07100c;
+ border-top:1px solid #493f2b;
+ padding:9px 4px calc(9px + env(safe-area-inset-bottom));
+}
+.nav button{
+ border:0;
+ background:none;
+ color:#d8cfae;
+ font-size:11px;
+}
+.notice{
+ text-align:center;
+ color:var(--muted);
+ font-size:11px;
+ margin-top:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="splash" onclick="enterApp()">
+ <img src="assets/logo.png" alt="Arcanea Italia">
+ <div class="splash-title">🔮 ARCANEA ITALIA</div>
+ <div class="splash-sub">Tocca per entrare</div>
+</div>
+
+<div id="app">
+
+<header>
+ <img src="assets/logo.png" alt="Arcanea Italia">
+ <div class="brand">🔮 ARCANEA ITALIA</div>
+ <div class="subtitle">La tua dimensione simbolica</div>
+</header>
+
+<!-- HOME -->
+<section id="home" class="screen active">
+
+<div class="grid">
+
+<div class="card" onclick="show('tarocco')">
+ <div class="emoji">🔮</div>
+ <h2>Tarocco del Giorno</h2>
+ <p>Il simbolo che accompagna la tua giornata.</p>
+</div>
+
+<div class="card" onclick="show('runa')">
+ <div class="emoji">ᚱ</div>
+ <h2>Runa del Giorno</h2>
+ <p>La runa e il suo messaggio.</p>
+</div>
+
+<div class="card" onclick="show('domanda')">
+ <div class="emoji">❓</div>
+ <h2>Domanda</h2>
+ <p>Sì · No · Non ancora.</p>
+</div>
+
+<div class="card" onclick="show('tema')">
+ <div class="emoji">🌙</div>
+ <h2>Tema Natale</h2>
+ <p>Prima un estratto, poi il completo.</p>
+</div>
+
+<div class="card" onclick="show('compat')">
+ <div class="emoji">❤️</div>
+ <h2>Compatibilità</h2>
+ <p>Scopri la vostra risonanza.</p>
+</div>
+
+<div class="card" onclick="show('matrice')">
+ <div class="emoji">✦</div>
+ <h2>Matrice Arcanea®</h2>
+ <p>Scopri la tua Chiave Arcanea.</p>
+</div>
+
+</div>
+
+<div class="section">
+<h2>📅 Consulenze Arcanea</h2>
+<p>Prenota direttamente con Arcanea Italia.</p>
+<button class="btn" onclick="openLink(SETMORE)">APRI SETMORE</button>
+</div>
+
+<div class="notice">
+Le letture simboliche sono strumenti di riflessione personale e intrattenimento.
+</div>
+
+</section>
+
+<!-- TAROT -->
+<section id="tarocco" class="screen">
+<button class="back" onclick="show('home')">← Home</button>
+<div class="section">
+<h1>🔮 Tarocco del Giorno</h1>
+<p>Estrai una carta per ricevere il messaggio simbolico di oggi.</p>
+<div id="tarotResult"></div>
+<button class="btn" onclick="tarot()">ESTRAI LA CARTA</button>
+</div>
+</section>
+
+<!-- RUNE -->
+<section id="runa" class="screen">
+<button class="back" onclick="show('home')">← Home</button>
+<div class="section">
+<h1>ᚱ Runa del Giorno</h1>
+<p>Lascia che sia il simbolo a parlare.</p>
+<div id="runeResult"></div>
+<button class="btn" onclick="rune()">ESTRAI LA RUNA</button>
+</div>
+</section>
+
+<!-- QUESTION -->
+<section id="domanda" class="screen">
+<button class="back" onclick="show('home')">← Home</button>
+<div class="section">
+<h1>❓ Domanda Arcanea</h1>
+<p>Formula una domanda precisa.</p>
+<input id="question" placeholder="La tua domanda...">
+<button class="btn" onclick="ask()">RICEVI LA RISPOSTA</button>
+<div id="answer"></div>
+</div>
+</section>
+
+<!-- NATAL -->
+<section id="tema" class="screen">
+<button class="back" onclick="show('home')">← Home</button>
+<div class="section">
+<h1>🌙 Tema Natale</h1>
+<p>Inserisci i tuoi dati. Riceverai prima un estratto gratuito.</p>
+
+<input id="nName" placeholder="Nome">
+<input id="nDate" type="date">
+<input id="nTime" type="time">
+<input id="nPlace" placeholder="Luogo di nascita">
+
+<button class="btn" onclick="natalPreview()">CALCOLA IL MIO ESTRATTO</button>
+
+<div id="natalResult"></div>
+</div>
+</section>
+
+<!-- COMPATIBILITY -->
+<section id="compat" class="screen">
+<button class="back" onclick="show('home')">← Home</button>
+<div class="section">
+<h1>❤️ Compatibilità</h1>
+<p>Inserisci i dati delle due persone.</p>
+
+<h2>Persona 1</h2>
+<input id="cName1" placeholder="Nome">
+<input id="cDate1" type="date">
+
+<h2>Persona 2</h2>
+<input id="cName2" placeholder="Nome">
+<input id="cDate2" type="date">
+
+<button class="btn" onclick="compatibility()">CALCOLA L'ESTRATTO</button>
+
+<div id="compatResult"></div>
+</div>
+</section>
+
+<!-- MATRIX -->
+<section id="matrice" class="screen">
+<button class="back" onclick="show('home')">← Home</button>
+<div class="section">
+<h1>✦ Matrice Arcanea®</h1>
+<p>Inserisci la tua firma per ottenere la prima Chiave.</p>
+
+<input id="mName" placeholder="Nome e cognome">
+<input id="mDate" type="date">
+<input id="mPlace" placeholder="Luogo">
+
+<button class="btn" onclick="matrix()">CALCOLA LA CHIAVE</button>
+
+<div id="matrixResult"></div>
+</div>
+</section>
+
+<nav class="nav">
+<button onclick="show('home')">⌂<br>Home</button>
+<button onclick="show('tarocco')">🔮<br>Tarocco</button>
+<button onclick="show('runa')">ᚱ<br>Runa</button>
+<button onclick="show('domanda')">❓<br>Domanda</button>
+<button onclick="openLink(SETMORE)">📅<br>Prenota</button>
+</nav>
+
+</div>
+
+<script>
+
+const SETMORE="https://arcaneaitalia.setmore.com?utm_source=qr-code&utm_medium=settings-share-bp";
+
+const SERVICES={
+ natal:"https://arcaneaitalia.setmore.com/services/04d4155b-7e4e-4285-8f48-d655baf3da77",
+ compatibility:"https://arcaneaitalia.setmore.com/services/cf85c88f-9dee-41c3-9c4f-753528913c49",
+ matrix:"https://arcaneaitalia.setmore.com/services/a0899a4f-4c5e-468a-bb42-8387b8599c3e"
+};
+
+function enterApp(){
+ document.getElementById("splash").style.display="none";
+ document.getElementById("app").style.display="block";
+}
+
+function show(id){
+ document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+ document.getElementById(id).classList.add("active");
+ window.scrollTo(0,0);
+}
+
+function openLink(url){
+ window.location.href=url;
+}
+
+const tarotCards=[
+["Il Matto","Inizio, libertà e possibilità."],
+["Il Mago","Azione, volontà e capacità di creare."],
+["La Papessa","Intuizione, silenzio e conoscenza interiore."],
+["L'Imperatrice","Creatività, crescita e abbondanza."],
+["L'Imperatore","Struttura, ordine e stabilità."],
+["Il Papa","Guida, valori e insegnamento."],
+["Gli Amanti","Scelta, relazione e unione."],
+["Il Carro","Movimento, conquista e direzione."],
+["La Giustizia","Equilibrio, verità e responsabilità."],
+["L'Eremita","Ricerca interiore e saggezza."],
+["La Ruota","Cambiamento e nuovo ciclo."],
+["La Forza","Coraggio, fiducia e padronanza."],
+["L'Appeso","Attesa e cambio di prospettiva."],
+["La Morte","Chiusura, trasformazione e rinascita."],
+["La Temperanza","Armonia ed equilibrio."],
+["Il Diavolo","Desiderio, legami e consapevolezza."],
+["La Torre","Rottura, verità e liberazione."],
+["La Stella","Speranza e ispirazione."],
+["La Luna","Emozioni, intuizione e mistero."],
+["Il Sole","Chiarezza, vitalità e successo."],
+["Il Giudizio","Risveglio e nuova consapevolezza."],
+["Il Mondo","Completamento e realizzazione."]
+];
+
+function tarot(){
+ let c=tarotCards[Math.floor(Math.random()*tarotCards.length)];
+ document.getElementById("tarotResult").innerHTML=
+ `<div class="result"><h2>${c[0]}</h2><p>${c[1]}</p></div>`;
+}
+
+const runes=[
+["Fehu","Risorse, energia e prosperità."],
+["Uruz","Forza e trasformazione."],
+["Thurisaz","Protezione e decisione."],
+["Ansuz","Comunicazione e intuizione."],
+["Raidho","Movimento e percorso."],
+["Kenaz","Conoscenza e rivelazione."],
+["Gebo","Dono e relazione."],
+["Wunjo","Gioia e armonia."],
+["Hagalaz","Cambiamento improvviso."],
+["Nauthiz","Necessità e pazienza."],
+["Isa","Fermati e osserva."],
+["Jera","Raccolto e risultati."],
+["Eihwaz","Resistenza e trasformazione."],
+["Perthro","Mistero e possibilità."],
+["Algiz","Protezione."],
+["Sowilo","Successo e chiarezza."],
+["Tiwaz","Coraggio e giustizia."],
+["Berkana","Nascita e crescita."],
+["Ehwaz","Movimento e fiducia."],
+["Mannaz","Consapevolezza."],
+["Laguz","Intuizione ed emozioni."],
+["Ingwaz","Completamento e rinnovamento."]
+];
+
+function rune(){
+ let r=runes[Math.floor(Math.random()*runes.length)];
+ document.getElementById("runeResult").innerHTML=
+ `<div class="result"><h2>ᚱ ${r[0]}</h2><p>${r[1]}</p></div>`;
+}
+
+function ask(){
+ let q=document.getElementById("question").value.trim();
+ if(!q){alert("Scrivi la domanda.");return}
+
+ let answers=[
+ ["SÌ","La direzione appare favorevole."],
+ ["NO","La situazione invita alla prudenza."],
+ ["NON ANCORA","Il momento richiede ancora tempo."]
+ ];
+
+ let a=answers[Math.floor(Math.random()*answers.length)];
+
+ document.getElementById("answer").innerHTML=
+ `<div class="result"><h2>${a[0]}</h2><p>${a[1]}</p></div>`;
+}
+
+function natalPreview(){
+
+ let name=document.getElementById("nName").value.trim();
+ let date=document.getElementById("nDate").value;
+ let time=document.getElementById("nTime").value;
+ let place=document.getElementById("nPlace").value.trim();
+
+ if(!name||!date||!time||!place){
+  alert("Compila tutti i dati.");
+  return;
+ }
+
+ let signs=[
+ "Capricorno","Acquario","Pesci","Ariete","Toro","Gemelli",
+ "Cancro","Leone","Vergine","Bilancia","Scorpione","Sagittario"
+ ];
+
+ let month=parseInt(date.split("-")[1])-1;
+ let sign=signs[month];
+
+ document.getElementById("natalResult").innerHTML=`
+ <div class="result">
+ <h2>Il tuo estratto</h2>
+ <p><b>${name}</b>, la tua firma di nascita presenta una prima risonanza collegata al simbolo del <b>${sign}</b>.</p>
+ <p>Data: ${date}<br>Ora: ${time}<br>Luogo: ${place}</p>
+ <p>Questo è solo un primo livello della lettura.</p>
+ </div>
+
+ <div class="lock">
+ <h2>🔐 Tema Natale Completo</h2>
+ <p>Per ricevere il percorso completo, procedi alla prenotazione e al pagamento tramite Setmore.</p>
+ <button class="btn" onclick="openLink(SERVICES.natal)">PRENOTA E PAGA SU SETMORE</button>
+ </div>`;
+}
+
+function compatibility(){
+
+ let a=document.getElementById("cName1").value.trim();
+ let b=document.getElementById("cName2").value.trim();
+ let d1=document.getElementById("cDate1").value;
+ let d2=document.getElementById("cDate2").value;
+
+ if(!a||!b||!d1||!d2){
+  alert("Compila tutti i dati.");
+  return;
+ }
+
+ let score=60+((a.length*3+b.length*5+d1.length+d2.length)%36);
+
+ document.getElementById("compatResult").innerHTML=`
+ <div class="result">
+ <h2>Primo estratto</h2>
+ <p><b>${a}</b> e <b>${b}</b> mostrano una prima risonanza simbolica del <b>${score}%</b>.</p>
+ <p>L'estratto è soltanto indicativo. La lettura completa approfondisce dinamiche, punti di forza e aree di tensione.</p>
+ </div>
+
+ <div class="lock">
+ <h2>🔐 Compatibilità Completa</h2>
+ <p>Accedi alla lettura completa attraverso la prenotazione Setmore.</p>
+ <button class="btn" onclick="openLink(SERVICES.compatibility)">PRENOTA E PAGA SU SETMORE</button>
+ </div>`;
+}
+
+function matrix(){
+
+ let name=document.getElementById("mName").value.trim();
+ let date=document.getElementById("mDate").value;
+ let place=document.getElementById("mPlace").value.trim();
+
+ if(!name||!date||!place){
+  alert("Compila tutti i dati.");
+  return;
+ }
+
+ let total=0;
+
+ for(let char of name.toUpperCase()){
+  if(char>="A"&&char<="Z"){
+   total+=char.charCodeAt(0)-64;
+  }
+ }
+
+ let key=total%22;
+ if(key===0)key=22;
+
+ document.getElementById("matrixResult").innerHTML=`
+ <div class="result">
+ <h2>✦ Prima Chiave Arcanea</h2>
+ <p>La firma <b>${name}</b> produce una prima Chiave Arcanea:</p>
+ <p style="font-size:30px;text-align:center;color:var(--gold2)"><b>${key}</b></p>
+ <p>Questa è soltanto l'anteprima. La Matrice Arcanea® completa sviluppa la lettura strutturata della firma.</p>
+ </div>
+
+ <div class="lock">
+ <h2>🔐 Matrice Arcanea® Completa</h2>
+ <p>Il percorso completo viene prenotato e pagato direttamente su Setmore.</p>
+ <div class="price">35 €</div>
+ <button class="btn" onclick="openLink(SERVICES.matrix)">PRENOTA E PAGA SU SETMORE</button>
+ </div>`;
+}
+
+</script>
+
+</body>
+</html>
