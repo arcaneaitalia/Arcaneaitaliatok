@@ -312,3 +312,47 @@ document.addEventListener("DOMContentLoaded", () => {
     if(overlay) overlay.remove();
   });
 })();
+
+/* === INSTALLAZIONE FACILE ARCANEA === */
+(function(){
+  let deferredPrompt = null;
+
+  window.addEventListener("beforeinstallprompt", function(e){
+    e.preventDefault();
+    deferredPrompt = e;
+  });
+
+  window.addEventListener("load", function(){
+    if (window.matchMedia("(display-mode: standalone)").matches) return;
+    if (window.navigator.standalone === true) return;
+    if (document.getElementById("arcanea-install-card")) return;
+
+    const card = document.createElement("div");
+    card.id = "arcanea-install-card";
+
+    card.innerHTML = `
+      <strong>🔮 Porta ARCANEA con te</strong>
+      <span>Installa Arcanea sulla schermata Home.</span>
+      <button id="arcanea-install-now">📲 INSTALLA ARCANEA</button>
+      <button class="close-install" id="arcanea-install-close">Continua sul sito</button>
+    `;
+
+    document.body.appendChild(card);
+
+    document.getElementById("arcanea-install-close").onclick = function(){
+      card.remove();
+    };
+
+    document.getElementById("arcanea-install-now").onclick = async function(){
+      if (deferredPrompt) {
+        await deferredPrompt.prompt();
+        deferredPrompt = null;
+        return;
+      }
+
+      alert(
+        "Per installare Arcanea: apri il menu ⋮ di Chrome e scegli «Installa app»."
+      );
+    };
+  });
+})();

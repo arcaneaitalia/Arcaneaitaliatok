@@ -285,3 +285,40 @@ footer strong{
         min-height:155px;
     }
 }
+
+#arcanea-install-card{
+  position:fixed;
+  left:16px;
+  right:16px;
+  bottom:20px;
+  z-index:99999;
+  background:#101b17;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:20px;
+  padding:18px;
+  text-align:center;
+  box-shadow:0 10px 40px rgba(0,0,0,.5);
+}
+
+#arcanea-install-card strong{
+  display:block;
+  font-size:19px;
+  margin-bottom:7px;
+}
+
+#arcanea-install-card button{
+  width:100%;
+  border:0;
+  border-radius:12px;
+  padding:14px;
+  margin-top:12px;
+  font-size:16px;
+  font-weight:bold;
+}
+
+#arcanea-install-card .close-install{
+  background:transparent;
+  color:#aaa;
+  padding:8px;
+}
