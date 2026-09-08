@@ -159,3 +159,26 @@ function question(){
 if("serviceWorker" in navigator){
  navigator.serviceWorker.register("sw.js").catch(()=>{});
 }
+
+let deferredInstallPrompt = null;
+
+window.addEventListener("beforeinstallprompt", event => {
+  event.preventDefault();
+  deferredInstallPrompt = event;
+  const button = document.getElementById("installApp");
+  if (button) button.hidden = false;
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const button = document.getElementById("installApp");
+
+  if (button) {
+    button.addEventListener("click", async () => {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      button.hidden = true;
+    });
+  }
+});
