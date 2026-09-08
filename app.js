@@ -182,3 +182,133 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+/* === POPUP INSTALLAZIONE ARCANEA === */
+(function(){
+  let installPrompt = null;
+
+  const style = document.createElement("style");
+  style.textContent = `
+    #arcaneaInstallOverlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.72);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:99999;
+      padding:20px;
+    }
+    #arcaneaInstallBox{
+      width:min(420px,100%);
+      background:#101b17;
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:24px;
+      padding:28px 22px;
+      text-align:center;
+      box-shadow:0 20px 60px rgba(0,0,0,.5);
+      color:#fff;
+    }
+    #arcaneaInstallBox .install-logo{
+      width:82px;
+      height:82px;
+      object-fit:contain;
+      margin-bottom:10px;
+    }
+    #arcaneaInstallBox h2{
+      margin:8px 0 10px;
+    }
+    #arcaneaInstallBox p{
+      line-height:1.5;
+      opacity:.9;
+    }
+    #arcaneaInstallBtn{
+      width:100%;
+      padding:15px;
+      border:0;
+      border-radius:14px;
+      font-weight:bold;
+      font-size:16px;
+      margin-top:14px;
+      cursor:pointer;
+    }
+    #arcaneaInstallClose{
+      background:transparent;
+      color:#aaa;
+      border:0;
+      margin-top:12px;
+      padding:10px;
+      cursor:pointer;
+    }
+  `;
+  document.head.appendChild(style);
+
+  window.addEventListener("beforeinstallprompt", event => {
+    event.preventDefault();
+    installPrompt = event;
+  });
+
+  function isInstalled(){
+    return window.matchMedia("(display-mode: standalone)").matches ||
+           window.navigator.standalone === true;
+  }
+
+  function showInstallPopup(){
+    if(isInstalled()) return;
+    if(document.getElementById("arcaneaInstallOverlay")) return;
+
+    const overlay = document.createElement("div");
+    overlay.id = "arcaneaInstallOverlay";
+
+    overlay.innerHTML = `
+      <div id="arcaneaInstallBox">
+        <img class="install-logo" src="assets/logo.png" alt="Arcanea Italia">
+        <h2>🔮 ARCANEA ITALIA</h2>
+        <p>
+          Porta Arcanea direttamente sulla schermata Home
+          e aprila come una vera app.
+        </p>
+
+        <button id="arcaneaInstallBtn">
+          📲 INSTALLA ARCANEA
+        </button>
+
+        <button id="arcaneaInstallClose">
+          Continua sul sito
+        </button>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    document.getElementById("arcaneaInstallClose").onclick = () => {
+      overlay.remove();
+    };
+
+    document.getElementById("arcaneaInstallBtn").onclick = async () => {
+      if(installPrompt){
+        await installPrompt.prompt();
+        installPrompt = null;
+        overlay.remove();
+        return;
+      }
+
+      const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+      if(ios){
+        alert("Su iPhone: premi Condividi → Aggiungi alla schermata Home.");
+      } else {
+        alert("Apri il menu del browser e scegli «Installa app» oppure «Aggiungi alla schermata Home».");
+      }
+    };
+  }
+
+  window.addEventListener("load", () => {
+    setTimeout(showInstallPopup, 1200);
+  });
+
+  window.addEventListener("appinstalled", () => {
+    const overlay = document.getElementById("arcaneaInstallOverlay");
+    if(overlay) overlay.remove();
+  });
+})();
