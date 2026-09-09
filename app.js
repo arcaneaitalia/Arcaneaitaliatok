@@ -233,6 +233,11 @@ if("serviceWorker" in navigator){
    ARCANEA — INSTALLAZIONE PWA
 ========================================= */
 
+
+/* =========================================
+   ARCANEA — INSTALLAZIONE PWA
+========================================= */
+
 let deferredInstallPrompt = null;
 
 const installBox = document.getElementById("arcanea-install");
