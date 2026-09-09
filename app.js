@@ -228,133 +228,67 @@ if("serviceWorker" in navigator){
    INSTALLAZIONE PWA
 ========================================== */
 
+
+/* =========================================
+   ARCANEA — INSTALLAZIONE PWA
+========================================= */
+
 let deferredInstallPrompt = null;
 
+const installBox = document.getElementById("arcanea-install");
+const installButton = document.getElementById("install");
 
-/* Chrome comunica che Arcanea può essere installata */
+if (installBox) {
+    installBox.hidden = true;
+}
 
-window.addEventListener(
-    "beforeinstallprompt",
-    event => {
+window.addEventListener("beforeinstallprompt", (event) => {
 
-        event.preventDefault();
+    event.preventDefault();
 
-        deferredInstallPrompt = event;
+    deferredInstallPrompt = event;
 
-        const button =
-            document.getElementById("install");
-
-        if(button){
-            button.style.display = "block";
-        }
-
+    if (installBox) {
+        installBox.hidden = false;
     }
-);
 
+});
 
-/* Pulsante INSTALLA */
+if (installButton) {
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+    installButton.addEventListener("click", async () => {
 
-        const installButton =
-            document.getElementById("install");
-
-        const closeButton =
-            document.getElementById("install-close");
-
-        const installBox =
-            document.getElementById("arcanea-install");
-
-
-        if(installButton){
-
-            installButton.addEventListener(
-                "click",
-                async () => {
-
-                    if(deferredInstallPrompt){
-
-                        deferredInstallPrompt.prompt();
-
-                        await deferredInstallPrompt.userChoice;
-
-                        deferredInstallPrompt = null;
-
-                        return;
-                    }
-
-
-                    /* iPhone */
-
-                    const ios =
-                        /iphone|ipad|ipod/i.test(
-                            navigator.userAgent
-                        );
-
-
-                    if(ios){
-
-                        alert(
-                            "Per installare Arcanea su iPhone: " +
-                            "tocca Condividi e poi " +
-                            "Aggiungi alla schermata Home."
-                        );
-
-                        return;
-                    }
-
-
-                    /* Android quando Chrome non espone il prompt */
-
-                    alert(
-                        "Per installare Arcanea: " +
-                        "apri il menu ⋮ di Chrome e scegli " +
-                        "«Installa app»."
-                    );
-
-                }
-            );
-
+        if (!deferredInstallPrompt) {
+            return;
         }
 
+        deferredInstallPrompt.prompt();
 
-        if(closeButton){
+        const choice =
+            await deferredInstallPrompt.userChoice;
 
-            closeButton.addEventListener(
-                "click",
-                () => {
-
-                    if(installBox){
-                        installBox.style.display = "none";
-                    }
-
-                }
-            );
-
-        }
-
-    }
-);
-
-
-/* ==========================================
-   RIMOZIONE RIQUADRO DOPO INSTALLAZIONE
-========================================== */
-
-window.addEventListener(
-    "appinstalled",
-    () => {
-
-        const box =
-            document.getElementById("arcanea-install");
-
-        if(box){
-            box.style.display = "none";
-        }
+        console.log(
+            "ARCANEA install:",
+            choice.outcome
+        );
 
         deferredInstallPrompt = null;
 
+        if (installBox) {
+            installBox.hidden = true;
+        }
+
+    });
+
+}
+
+window.addEventListener("appinstalled", () => {
+
+    deferredInstallPrompt = null;
+
+    if (installBox) {
+        installBox.hidden = true;
     }
-);
+
+});
+
