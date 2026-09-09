@@ -59,185 +59,395 @@ function openSetmore(){
 
 function openService(type){
 
-    const data = {
+    if(type === "natal"){
+        modal(`
+            <div class="service">
+                <h2>✨ Tema Natale</h2>
+                <p>Inserisci i tuoi dati di nascita e ricevi subito un primo estratto gratuito.</p>
 
-        natal:{
-            title:"✨ Tema Natale",
-            intro:"Una prima lettura gratuita del tuo cielo di nascita.",
-            preview:`
-                <div class="free-reading">
-                    <div class="free-label">ANTEPRIMA GRATUITA</div>
+                <div class="arcanea-form">
 
-                    <h3>🌙 Cosa osserva Arcanea</h3>
+                    <label>Data di nascita</label>
+                    <input id="natalDate" type="date">
 
-                    <p>
-                        Il Tema Natale nasce dall'incontro tra
-                        <strong>data, ora e luogo di nascita</strong>.
-                        Da questi elementi emerge una struttura
-                        simbolica personale.
-                    </p>
+                    <label>Ora di nascita</label>
+                    <input id="natalTime" type="time">
 
-                    <div class="mini-reading">
-                        <span>☀️</span>
-                        <div>
-                            <strong>IDENTITÀ</strong>
-                            <p>
-                                Il Sole rappresenta il centro
-                                dell'espressione personale:
-                                ciò che vuoi sviluppare e manifestare.
-                            </p>
-                        </div>
-                    </div>
+                    <label>Luogo di nascita</label>
+                    <input id="natalPlace" type="text"
+                           placeholder="Es. Catania">
 
-                    <div class="mini-reading">
-                        <span>🌙</span>
-                        <div>
-                            <strong>MONDO INTERIORE</strong>
-                            <p>
-                                La Luna mostra bisogni emotivi,
-                                sensibilità e modalità istintive.
-                            </p>
-                        </div>
-                    </div>
+                    <button class="action"
+                        onclick="generateNatal()">
+                        🔮 SCOPRI IL TUO ESTRATTO
+                    </button>
 
-                    <div class="preview-note">
-                        Questa è solo una prima chiave di lettura.
-                        L'analisi completa approfondisce la tua
-                        configurazione personale.
-                    </div>
                 </div>
-            `
-        },
+            </div>
+        `);
+        return;
+    }
 
-        compatibility:{
-            title:"💞 Compatibilità",
-            intro:"Una prima lettura gratuita della dinamica tra due persone.",
-            preview:`
-                <div class="free-reading">
-                    <div class="free-label">ANTEPRIMA GRATUITA</div>
+    if(type === "compatibility"){
+        modal(`
+            <div class="service">
+                <h2>💞 Compatibilità</h2>
+                <p>Inserisci i dati delle due persone e scopri la prima dinamica della vostra connessione.</p>
 
-                    <h3>💫 Cosa osserva Arcanea</h3>
+                <div class="arcanea-form">
 
-                    <p>
-                        La Compatibilità mette in relazione
-                        le due firme personali per osservare
-                        <strong>attrazione, comunicazione e punti di tensione</strong>.
-                    </p>
+                    <h3>PERSONA A</h3>
 
-                    <div class="mini-reading">
-                        <span>💞</span>
-                        <div>
-                            <strong>CONNESSIONE</strong>
-                            <p>
-                                Una relazione può essere intensa
-                                quando le energie personali
-                                si riconoscono e si completano.
-                            </p>
-                        </div>
-                    </div>
+                    <input id="personAName"
+                           type="text"
+                           placeholder="Nome">
 
-                    <div class="mini-reading">
-                        <span>🗣️</span>
-                        <div>
-                            <strong>COMUNICAZIONE</strong>
-                            <p>
-                                Il modo in cui due persone
-                                esprimono bisogni e pensieri
-                                può creare armonia oppure distanza.
-                            </p>
-                        </div>
-                    </div>
+                    <label>Data di nascita</label>
+                    <input id="personADate" type="date">
 
-                    <div class="preview-note">
-                        L'anteprima mostra il principio della lettura.
-                        L'analisi completa entra nella dinamica specifica
-                        della coppia.
-                    </div>
+                    <h3>PERSONA B</h3>
+
+                    <input id="personBName"
+                           type="text"
+                           placeholder="Nome">
+
+                    <label>Data di nascita</label>
+                    <input id="personBDate" type="date">
+
+                    <button class="action"
+                        onclick="generateCompatibility()">
+                        💞 SCOPRI LA VOSTRA DINAMICA
+                    </button>
+
                 </div>
-            `
-        },
+            </div>
+        `);
+        return;
+    }
 
-        matrix:{
-            title:"🜂 Matrice Arcanea®",
-            intro:"Una prima lettura gratuita attraverso il metodo Arcanea.",
-            preview:`
-                <div class="free-reading">
-                    <div class="free-label">ANTEPRIMA GRATUITA</div>
+    if(type === "matrix"){
+        modal(`
+            <div class="service">
+                <h2>🜂 Matrice Arcanea®</h2>
+                <p>Inserisci una firma e osserva il primo livello della tua Matrice.</p>
 
-                    <h3>🔮 La tua firma simbolica</h3>
+                <div class="arcanea-form">
 
-                    <p>
-                        La Matrice Arcanea® parte da una
-                        <strong>firma</strong>: un nome, una data,
-                        una parola o un evento.
-                    </p>
+                    <label>Nome</label>
+                    <input id="matrixName"
+                           type="text"
+                           placeholder="Il tuo nome">
 
-                    <div class="matrix-demo">
-                        <div class="matrix-number">1</div>
-                        <div class="matrix-number">5</div>
-                        <div class="matrix-number">9</div>
-                        <div class="matrix-number">16</div>
-                    </div>
+                    <label>Cognome</label>
+                    <input id="matrixSurname"
+                           type="text"
+                           placeholder="Il tuo cognome">
 
-                    <div class="mini-reading">
-                        <span>🔢</span>
-                        <div>
-                            <strong>SCOMPOSIZIONE</strong>
-                            <p>
-                                La firma viene trasformata in una
-                                sequenza numerica attraverso i livelli
-                                della Matrice.
-                            </p>
-                        </div>
-                    </div>
+                    <label>Data di nascita</label>
+                    <input id="matrixDate" type="date">
 
-                    <div class="mini-reading">
-                        <span>🜂</span>
-                        <div>
-                            <strong>CHIAVE ARCANEА</strong>
-                            <p>
-                                Dalla convergenza dei valori emerge
-                                una chiave simbolica da interpretare.
-                            </p>
-                        </div>
-                    </div>
+                    <button class="action"
+                        onclick="generateMatrix()">
+                        🜂 CALCOLA LA MATRICE
+                    </button>
 
-                    <div class="preview-note">
-                        Questa è una dimostrazione del metodo.
-                        La Matrice completa viene costruita sulla
-                        tua firma personale.
-                    </div>
                 </div>
-            `
-        }
+            </div>
+        `);
+    }
+}
 
-    }[type];
+/* ==========================================
+   TEMA NATALE
+========================================== */
 
-    if(!data) return;
+function getZodiac(dateString){
+
+    const d = new Date(dateString + "T00:00:00");
+    const day = d.getDate();
+    const month = d.getMonth() + 1;
+
+    if((month===3 && day>=21)||(month===4 && day<=19)) return "Ariete";
+    if((month===4 && day>=20)||(month===5 && day<=20)) return "Toro";
+    if((month===5 && day>=21)||(month===6 && day<=20)) return "Gemelli";
+    if((month===6 && day>=21)||(month===7 && day<=22)) return "Cancro";
+    if((month===7 && day>=23)||(month===8 && day<=22)) return "Leone";
+    if((month===8 && day>=23)||(month===9 && day<=22)) return "Vergine";
+    if((month===9 && day>=23)||(month===10 && day<=22)) return "Bilancia";
+    if((month===10 && day>=23)||(month===11 && day<=21)) return "Scorpione";
+    if((month===11 && day>=22)||(month===12 && day<=21)) return "Sagittario";
+    if((month===12 && day>=22)||(month===1 && day<=19)) return "Capricorno";
+    if((month===1 && day>=20)||(month===2 && day<=18)) return "Acquario";
+    return "Pesci";
+}
+
+const zodiacReading = {
+    Ariete:"La tua energia tende all'iniziativa. Quando senti che è il momento di agire, hai bisogno di movimento e di una direzione chiara.",
+    Toro:"Cerchi stabilità, ma quando trovi qualcosa in cui credere puoi dimostrare una grande determinazione.",
+    Gemelli:"La curiosità e lo scambio sono centrali. Le idee e le parole possono diventare strumenti importanti del tuo percorso.",
+    Cancro:"La sensibilità è una delle tue chiavi. Tendi a percepire profondamente persone, ambienti e legami.",
+    Leone:"Hai bisogno di esprimere ciò che senti come autenticamente tuo. Creatività e presenza possono diventare punti di forza.",
+    Vergine:"Osservazione e attenzione ai dettagli ti permettono di comprendere ciò che altri possono trascurare.",
+    Bilancia:"La ricerca dell'equilibrio è importante. Relazioni, armonia e capacità di vedere più prospettive possono guidarti.",
+    Scorpione:"La tua energia tende ad andare in profondità. Intuito e trasformazione possono essere temi importanti della tua esperienza.",
+    Sagittario:"Curiosità, libertà e ricerca di significato possono spingerti verso nuove esperienze e nuove prospettive.",
+    Capricorno:"La costruzione nel tempo è una tua forza. Quando hai un obiettivo puoi procedere con grande costanza.",
+    Acquario:"Originalità e indipendenza possono caratterizzare il tuo modo di vedere il mondo e cercare nuove possibilità.",
+    Pesci:"Sensibilità, immaginazione e intuizione possono essere strumenti importanti attraverso cui interpreti ciò che ti circonda."
+};
+
+function generateNatal(){
+
+    const date = document.getElementById("natalDate")?.value;
+    const time = document.getElementById("natalTime")?.value;
+    const place = document.getElementById("natalPlace")?.value.trim();
+
+    if(!date || !time || !place){
+        alert("Completa data, ora e luogo di nascita.");
+        return;
+    }
+
+    const sign = getZodiac(date);
 
     modal(`
-        <div class="service">
+        <div class="result personalized">
 
-            <h2>${data.title}</h2>
+            <div class="free-label">ESTRATTO GRATUITO</div>
 
-            <p class="service-intro">
-                ${data.intro}
+            <h2>✨ La tua prima chiave</h2>
+
+            <div class="personal-data">
+                <span>☀️</span>
+                <strong>Sole in ${sign}</strong>
+            </div>
+
+            <p>${zodiacReading[sign]}</p>
+
+            <div class="reading-detail">
+                <strong>🌙 DATI DELLA TUA NASCITA</strong>
+                <p>${date} · ${time}<br>${place}</p>
+            </div>
+
+            <div class="curiosity">
+                <strong>Questa è soltanto la prima soglia.</strong>
+                <p>
+                    Il Tema Natale completo può approfondire
+                    personalità, talenti, mondo emotivo,
+                    relazioni e direzioni del tuo percorso.
+                </p>
+            </div>
+
+            <button class="action"
+                onclick="continueService('natal')">
+                CONTINUA CON IL TEMA NATALE →
+            </button>
+
+        </div>
+    `);
+}
+
+
+/* ==========================================
+   COMPATIBILITÀ
+========================================== */
+
+const compatibilityTexts = {
+    "stessa":"Avete una base energetica simile. Questo può creare comprensione immediata, ma anche rendere più evidenti le caratteristiche che condividete.",
+    "fuoco-aria":"Tra voi può esserci una dinamica vivace: l'energia dell'uno può alimentare idee, entusiasmo e movimento nell'altro.",
+    "terra-acqua":"La combinazione può favorire profondità e stabilità. Una persona può offrire radicamento mentre l'altra porta sensibilità.",
+    "fuoco-acqua":"La connessione può essere intensa. Desiderio e sensibilità possono avvicinarsi, ma richiedono attenzione reciproca.",
+    "terra-aria":"Avete modalità differenti. Una persona tende alla concretezza, l'altra può avere bisogno di spazio mentale e cambiamento.",
+    "aria-acqua":"La mente e l'emotività possono incontrarsi in modo particolare. La comunicazione diventa una chiave fondamentale."
+};
+
+function elementOf(sign){
+
+    if(["Ariete","Leone","Sagittario"].includes(sign)) return "fuoco";
+    if(["Toro","Vergine","Capricorno"].includes(sign)) return "terra";
+    if(["Gemelli","Bilancia","Acquario"].includes(sign)) return "aria";
+    return "acqua";
+}
+
+function generateCompatibility(){
+
+    const nameA = document.getElementById("personAName")?.value.trim() || "Persona A";
+    const dateA = document.getElementById("personADate")?.value;
+
+    const nameB = document.getElementById("personBName")?.value.trim() || "Persona B";
+    const dateB = document.getElementById("personBDate")?.value;
+
+    if(!dateA || !dateB){
+        alert("Inserisci le due date di nascita.");
+        return;
+    }
+
+    const signA = getZodiac(dateA);
+    const signB = getZodiac(dateB);
+
+    let reading;
+
+    if(signA === signB){
+        reading = compatibilityTexts.stessa;
+    }else{
+        const pair = [elementOf(signA),elementOf(signB)].sort().join("-");
+
+        reading =
+            compatibilityTexts[pair] ||
+            "La vostra combinazione presenta energie differenti. Proprio questa differenza può diventare una delle chiavi della relazione.";
+    }
+
+    modal(`
+        <div class="result personalized">
+
+            <div class="free-label">ESTRATTO GRATUITO</div>
+
+            <h2>💞 La vostra prima dinamica</h2>
+
+            <div class="compatibility-pair">
+                <span>${nameA}</span>
+                <b>${signA}</b>
+                <span>♥</span>
+                <span>${nameB}</span>
+                <b>${signB}</b>
+            </div>
+
+            <p>${reading}</p>
+
+            <div class="curiosity">
+                <strong>Ma questa è soltanto la superficie.</strong>
+                <p>
+                    La lettura completa può approfondire attrazione,
+                    comunicazione, dinamiche emotive, punti di forza
+                    e possibili tensioni della relazione.
+                </p>
+            </div>
+
+            <button class="action"
+                onclick="continueService('compatibility')">
+                CONTINUA CON LA COMPATIBILITÀ →
+            </button>
+
+        </div>
+    `);
+}
+
+
+/* ==========================================
+   MATRICE ARCANEА®
+========================================== */
+
+function letterValue(char){
+    const c = char.toUpperCase();
+    const code = c.charCodeAt(0);
+
+    if(code >= 65 && code <= 90){
+        return code - 64;
+    }
+
+    return 0;
+}
+
+function generateMatrix(){
+
+    const name =
+        document.getElementById("matrixName")?.value.trim();
+
+    const surname =
+        document.getElementById("matrixSurname")?.value.trim();
+
+    const date =
+        document.getElementById("matrixDate")?.value;
+
+    if(!name || !surname || !date){
+        alert("Completa nome, cognome e data di nascita.");
+        return;
+    }
+
+    const signature =
+        (name + surname).toUpperCase().replace(/[^A-Z]/g,"");
+
+    const values =
+        [...signature].map(letterValue);
+
+    const total =
+        values.reduce((a,b)=>a+b,0);
+
+    const key =
+        ((total - 1) % 22) + 1;
+
+    const sequence =
+        values.slice(0,6).join(" · ");
+
+    const arcanaNames = {
+        1:"Il Mago",
+        2:"La Papessa",
+        3:"L'Imperatrice",
+        4:"L'Imperatore",
+        5:"Il Papa",
+        6:"Gli Amanti",
+        7:"Il Carro",
+        8:"La Giustizia",
+        9:"L'Eremita",
+        10:"La Ruota della Fortuna",
+        11:"La Forza",
+        12:"L'Appeso",
+        13:"La Morte",
+        14:"La Temperanza",
+        15:"Il Diavolo",
+        16:"La Torre",
+        17:"La Stella",
+        18:"La Luna",
+        19:"Il Sole",
+        20:"Il Giudizio",
+        21:"Il Mondo",
+        22:"Il Matto"
+    };
+
+    modal(`
+        <div class="result personalized">
+
+            <div class="free-label">ESTRATTO GRATUITO</div>
+
+            <h2>🜂 La tua prima Matrice</h2>
+
+            <div class="matrix-signature">
+                ${name} ${surname}
+            </div>
+
+            <div class="matrix-demo">
+                ${values.slice(0,6).map(v =>
+                    `<div class="matrix-number">${v}</div>`
+                ).join("")}
+            </div>
+
+            <div class="reading-detail">
+                <strong>SEQUENZA INIZIALE</strong>
+                <p>${sequence}</p>
+            </div>
+
+            <div class="personal-data">
+                <span>🔑</span>
+                <strong>Prima Chiave: ${key} · ${arcanaNames[key]}</strong>
+            </div>
+
+            <p>
+                La tua firma genera una prima risonanza simbolica
+                legata all'energia di <strong>${arcanaNames[key]}</strong>.
             </p>
 
-            ${data.preview}
-
-            <div class="continue-box">
-
+            <div class="curiosity">
+                <strong>Questo è soltanto il primo livello.</strong>
                 <p>
-                    ✨ Vuoi ricevere la lettura completa?
+                    La Matrice Arcanea® completa approfondisce
+                    la sequenza, le ricorrenze e la convergenza
+                    dei valori per arrivare alla Chiave Arcanea.
                 </p>
-
-                <button class="action"
-                    onclick="continueService('${type}')">
-                    CONTINUA CON LA LETTURA →
-                </button>
-
             </div>
+
+            <button class="action"
+                onclick="continueService('matrix')">
+                CONTINUA CON LA MATRICE ARCANEA® →
+            </button>
 
         </div>
     `);

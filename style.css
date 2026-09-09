@@ -938,3 +938,180 @@ footer strong{
     }
 
 }
+
+
+/* ==========================================
+   ARCANEA — FORM LETTURE PERSONALIZZATE
+========================================== */
+
+.arcanea-form{
+    display:grid;
+    gap:11px;
+    margin-top:20px;
+}
+
+.arcanea-form label{
+    font-size:11px;
+    letter-spacing:1px;
+    color:#d9c979;
+    margin-top:5px;
+}
+
+.arcanea-form h3{
+    font-family:Cinzel,serif;
+    color:#e0cd82;
+    font-size:14px;
+    margin-top:12px;
+}
+
+.arcanea-form input{
+    width:100%;
+    border:1px solid #c7b77b55;
+    border-radius:14px;
+    padding:14px;
+    background:#0b1210;
+    color:#eee8d8;
+    font-family:Montserrat,sans-serif;
+    font-size:14px;
+    outline:none;
+}
+
+.arcanea-form input:focus{
+    border-color:#d9c979;
+    box-shadow:0 0 0 2px #d9c97918;
+}
+
+.arcanea-form .action{
+    margin-top:12px;
+    width:100%;
+}
+
+.free-label{
+    display:inline-block;
+    padding:6px 12px;
+    border:1px solid #d9c97988;
+    border-radius:999px;
+    color:#e0cd82;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1.5px;
+}
+
+.personalized{
+    text-align:center;
+}
+
+.personalized > p{
+    margin:16px 0;
+}
+
+.personal-data{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin:18px 0;
+    padding:16px;
+    border:1px solid #c7b77b44;
+    border-radius:18px;
+    background:#0b1210aa;
+}
+
+.personal-data span{
+    font-size:28px;
+}
+
+.personal-data strong{
+    color:#e0cd82;
+}
+
+.reading-detail{
+    margin:16px 0;
+    padding:15px;
+    border-radius:16px;
+    background:#101b16;
+    border:1px solid #c7b77b33;
+}
+
+.reading-detail strong{
+    display:block;
+    color:#d9c979;
+    font-size:11px;
+    letter-spacing:1px;
+    margin-bottom:7px;
+}
+
+.reading-detail p{
+    font-size:13px;
+    opacity:.75;
+}
+
+.curiosity{
+    margin:20px 0;
+    padding:18px;
+    border-left:2px solid #d9c979;
+    text-align:left;
+    background:#101b1688;
+}
+
+.curiosity strong{
+    color:#e0cd82;
+    display:block;
+    margin-bottom:8px;
+}
+
+.curiosity p{
+    font-size:13px;
+    line-height:1.65;
+}
+
+.compatibility-pair{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:9px;
+    margin:20px 0;
+}
+
+.compatibility-pair span{
+    padding:9px 12px;
+    border-radius:12px;
+    background:#101b16;
+    border:1px solid #c7b77b33;
+}
+
+.compatibility-pair b{
+    color:#e0cd82;
+    font-size:12px;
+}
+
+.matrix-signature{
+    margin:18px 0;
+    font-family:Cinzel,serif;
+    font-size:21px;
+    color:#e0cd82;
+    letter-spacing:1px;
+}
+
+.matrix-demo{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+    margin:18px 0;
+}
+
+.matrix-number{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:1px solid #d9c97988;
+    color:#e0cd82;
+    background:#0d1713;
+    font-family:Cinzel,serif;
+    font-size:14px;
+}
