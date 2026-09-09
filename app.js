@@ -229,9 +229,6 @@ if("serviceWorker" in navigator){
 ========================================== */
 
 
-/* =========================================
-   ARCANEA — INSTALLAZIONE PWA
-========================================= */
 
 
 /* =========================================
@@ -240,42 +237,95 @@ if("serviceWorker" in navigator){
 
 let deferredInstallPrompt = null;
 
-const installBox = document.getElementById("arcanea-install");
-const installButton = document.getElementById("install");
+const installBox =
+    document.getElementById("arcanea-install");
+
+const installButton =
+    document.getElementById("install");
+
+
+/* La card è sempre visibile.
+   Se Chrome offre il prompt vero,
+   il pulsante lo utilizzerà. */
 
 if (installBox) {
-    installBox.hidden = true;
+    installBox.hidden = false;
 }
 
-window.addEventListener("beforeinstallprompt", (event) => {
 
-    event.preventDefault();
+/* Chrome comunica che la PWA può
+   essere installata */
 
-    deferredInstallPrompt = event;
+window.addEventListener(
+    "beforeinstallprompt",
+    (event) => {
 
-    if (installBox) {
-        installBox.hidden = false;
+        event.preventDefault();
+
+        deferredInstallPrompt = event;
+
+        if (installBox) {
+            installBox.hidden = false;
+        }
+
     }
+);
 
-});
+
+/* Pulsante INSTALLA */
 
 if (installButton) {
 
-    installButton.addEventListener("click", async () => {
+    installButton.addEventListener(
+        "click",
+        async () => {
 
-        if (!deferredInstallPrompt) {
-            return;
+            /* Caso normale:
+               Chrome ci ha dato il prompt */
+
+            if (deferredInstallPrompt) {
+
+                deferredInstallPrompt.prompt();
+
+                const result =
+                    await deferredInstallPrompt.userChoice;
+
+                console.log(
+                    "ARCANEA install:",
+                    result.outcome
+                );
+
+                deferredInstallPrompt = null;
+
+                return;
+            }
+
+
+            /* Caso in cui Chrome non ha consegnato
+               beforeinstallprompt.
+               L'app è comunque installabile
+               dal menu di Chrome. */
+
+            alert(
+                "🔮 ARCANEA ITALIA\n\n" +
+                "Per installare ARCANEA sul tuo telefono:\n\n" +
+                "1. Tocca ⋮ in alto a destra in Chrome\n\n" +
+                "2. Tocca «Installa app»\n\n" +
+                "3. Conferma l'installazione\n\n" +
+                "ARcanEA verrà aggiunta alla schermata Home."
+            );
+
         }
+    );
 
-        deferredInstallPrompt.prompt();
+}
 
-        const choice =
-            await deferredInstallPrompt.userChoice;
 
-        console.log(
-            "ARCANEA install:",
-            choice.outcome
-        );
+/* Quando l'app viene realmente installata */
+
+window.addEventListener(
+    "appinstalled",
+    () => {
 
         deferredInstallPrompt = null;
 
@@ -283,17 +333,5 @@ if (installButton) {
             installBox.hidden = true;
         }
 
-    });
-
-}
-
-window.addEventListener("appinstalled", () => {
-
-    deferredInstallPrompt = null;
-
-    if (installBox) {
-        installBox.hidden = true;
     }
-
-});
-
+);
