@@ -1,13 +1,13 @@
 const SETMORE =
 "https://arcaneaitalia.setmore.com?utm_source=qr-code&utm_medium=settings-share-bp";
 
-const SERVICES={
+const SERVICES = {
     natal:"https://arcaneaitalia.setmore.com/services/04d4155b-7e4e-4285-8f48-d655baf3da77",
     compatibility:"https://arcaneaitalia.setmore.com/services/cf85c88f-9dee-41c3-9c4f-753528913c49",
     matrix:"https://arcaneaitalia.setmore.com/services/a0899a4f-4c5e-468a-bb42-8387b8599c3e"
 };
 
-const tarot=[
+const tarot = [
  ["Il Sole","☀️","Chiarezza, vitalità e una risposta che diventa più evidente."],
  ["La Stella","⭐","Fiducia, speranza e una nuova direzione da seguire."],
  ["La Luna","🌙","Ascolta l'intuito, ma non confondere intuizione e paura."],
@@ -16,7 +16,7 @@ const tarot=[
  ["La Ruota della Fortuna","☸️","Un cambiamento può aprire una possibilità inattesa."]
 ];
 
-const runes=[
+const runes = [
  ["Fehu","ᚠ","Energia, risorse e movimento. Qualcosa può iniziare a crescere."],
  ["Uruz","ᚢ","Forza interiore, resistenza e trasformazione."],
  ["Ansuz","ᚨ","Una parola, un messaggio o una rivelazione può essere importante."],
@@ -25,7 +25,7 @@ const runes=[
  ["Algiz","ᛉ","Protezione e ascolto dell'istinto."]
 ];
 
-const signs={
+const signs = {
  ariete:"Oggi agisci con coraggio, ma lascia spazio all'ascolto.",
  toro:"Una scelta paziente può portare più stabilità di una decisione impulsiva.",
  gemelli:"Una conversazione può cambiare il modo in cui guardi una situazione.",
@@ -41,339 +41,320 @@ const signs={
 };
 
 function modal(html){
- document.getElementById("modalContent").innerHTML=html;
- document.getElementById("modal").classList.remove("hidden");
+    const content = document.getElementById("modalContent");
+    const box = document.getElementById("modal");
+
+    if(content) content.innerHTML = html;
+    if(box) box.classList.remove("hidden");
 }
 
 function closeModal(){
- document.getElementById("modal").classList.add("hidden");
+    const box = document.getElementById("modal");
+    if(box) box.classList.add("hidden");
 }
 
 function openSetmore(){
- window.open(SETMORE,"_blank");
+    window.open(SETMORE,"_blank");
 }
 
 function openService(type){
- const data={
-  natal:{
-   title:"✨ Tema Natale",
-   text:"Inserisci i tuoi dati di nascita per ricevere un primo orientamento astrologico. L'analisi completa viene effettuata tramite Arcanea Italia.",
-   preview:"L'estratto ti permette di entrare nella lettura. Per ricevere il Tema Natale completo puoi prenotare direttamente il servizio."
-  },
-  compatibility:{
-   title:"💞 Compatibilità",
-   text:"Confronta due temi e scopri le principali dinamiche simboliche della relazione.",
-   preview:"Ricevi un primo orientamento sulla connessione. Per l'analisi completa prenota il servizio."
-  },
-  matrix:{
-   title:"🜂 Matrice Arcanea®",
-   text:"La Matrice Arcanea® osserva una firma attraverso diversi livelli simbolici per arrivare alla Chiave Arcanea.",
-   preview:"Scopri il metodo e richiedi la tua Matrice Arcanea® completa attraverso Arcanea Italia."
-  }
- }[type];
 
- modal(`
-  <div class="service">
-   <h2>${data.title}</h2>
-   <p>${data.text}</p>
-   <div class="preview">${data.preview}</div>
-   <p>Il pagamento avviene direttamente tramite <strong>Setmore</strong>.</p>
-   <br>
-   <button class="action" onclick="window.open('${SERVICES[type]}','_blank')">
-    PRENOTA / ACQUISTA SU SETMORE
-   </button>
-  </div>
- `);
+    const data = {
+        natal:{
+            title:"✨ Tema Natale",
+            text:"Inserisci i tuoi dati di nascita per ricevere un primo orientamento astrologico. L'analisi completa viene effettuata tramite Arcanea Italia.",
+            preview:"L'estratto ti permette di entrare nella lettura. Per ricevere il Tema Natale completo puoi prenotare direttamente il servizio."
+        },
+
+        compatibility:{
+            title:"💞 Compatibilità",
+            text:"Confronta due temi e scopri le principali dinamiche simboliche della relazione.",
+            preview:"Ricevi un primo orientamento sulla connessione. Per l'analisi completa prenota il servizio."
+        },
+
+        matrix:{
+            title:"🜂 Matrice Arcanea®",
+            text:"La Matrice Arcanea® osserva una firma attraverso diversi livelli simbolici per arrivare alla Chiave Arcanea.",
+            preview:"Scopri il metodo e richiedi la tua Matrice Arcanea® completa attraverso Arcanea Italia."
+        }
+    }[type];
+
+    if(!data) return;
+
+    modal(`
+        <div class="service">
+            <h2>${data.title}</h2>
+            <p>${data.text}</p>
+
+            <div class="preview">
+                ${data.preview}
+            </div>
+
+            <p>
+                Il pagamento avviene direttamente tramite
+                <strong>Setmore</strong>.
+            </p>
+
+            <button class="action"
+                onclick="window.open('${SERVICES[type]}','_blank')">
+                PRENOTA / ACQUISTA SU SETMORE
+            </button>
+        </div>
+    `);
 }
 
 function dailyIndex(length){
- const d=new Date();
- const seed=d.getFullYear()*10000+(d.getMonth()+1)*100+d.getDate();
- return seed%length;
+    const d = new Date();
+
+    const seed =
+        d.getFullYear() * 10000 +
+        (d.getMonth()+1) * 100 +
+        d.getDate();
+
+    return seed % length;
 }
 
 function showDaily(type){
- if(type==="tarot"){
-  const c=tarot[dailyIndex(tarot.length)];
-  modal(`
-   <div class="result">
-    <h2>🃏 Tarocco del Giorno</h2>
-    <div class="symbol">${c[1]}</div>
-    <h2>${c[0]}</h2>
-    <p>${c[2]}</p>
-   </div>
-  `);
- }
 
- if(type==="rune"){
-  const c=runes[dailyIndex(runes.length)];
-  modal(`
-   <div class="result">
-    <h2>ᚱ Runa del Giorno</h2>
-    <div class="symbol">${c[1]}</div>
-    <h2>${c[0]}</h2>
-    <p>${c[2]}</p>
-   </div>
-  `);
- }
+    if(type === "tarot"){
 
- if(type==="horoscope"){
-  const keys=Object.keys(signs);
-  let html="<h2>🌙 Oroscopo Giornaliero</h2><p>Scegli il tuo segno.</p>";
-  html+="<div style='display:grid;gap:8px;margin-top:18px'>";
-  keys.forEach(k=>{
-   html+=`<button class="action" style="width:100%" onclick="horoscope('${k}')">${k.toUpperCase()}</button>`;
-  });
-  html+="</div>";
-  modal(html);
- }
+        const c = tarot[dailyIndex(tarot.length)];
+
+        modal(`
+            <div class="result">
+                <h2>🃏 Tarocco del Giorno</h2>
+                <div class="symbol">${c[1]}</div>
+                <h2>${c[0]}</h2>
+                <p>${c[2]}</p>
+            </div>
+        `);
+
+        return;
+    }
+
+    if(type === "rune"){
+
+        const c = runes[dailyIndex(runes.length)];
+
+        modal(`
+            <div class="result">
+                <h2>ᚱ Runa del Giorno</h2>
+                <div class="symbol">${c[1]}</div>
+                <h2>${c[0]}</h2>
+                <p>${c[2]}</p>
+            </div>
+        `);
+
+        return;
+    }
+
+    if(type === "horoscope"){
+
+        const keys = Object.keys(signs);
+
+        let html = `
+            <h2>🌙 Oroscopo Giornaliero</h2>
+            <p>Scegli il tuo segno.</p>
+            <div style="display:grid;gap:8px;margin-top:18px">
+        `;
+
+        keys.forEach(k => {
+
+            html += `
+                <button
+                    class="action"
+                    style="width:100%"
+                    onclick="horoscope('${k}')">
+                    ${k.toUpperCase()}
+                </button>
+            `;
+
+        });
+
+        html += `</div>`;
+
+        modal(html);
+    }
 }
 
 function horoscope(sign){
- modal(`
-  <div class="result">
-   <h2>🌙 ${sign.toUpperCase()}</h2>
-   <p>${signs[sign]}</p>
-  </div>
- `);
+
+    modal(`
+        <div class="result">
+            <h2>🌙 ${sign.toUpperCase()}</h2>
+            <p>${signs[sign]}</p>
+        </div>
+    `);
 }
 
 function question(){
- const answers=[
-  ["SÌ","L'energia è favorevole. Procedi con consapevolezza."],
-  ["NO","Per ora è meglio fermarsi e osservare ciò che sta accadendo."],
-  ["NON ANCORA","La risposta può arrivare, ma manca ancora un elemento."]
- ];
 
- const a=answers[Math.floor(Math.random()*answers.length)];
+    const answers = [
+        ["SÌ","L'energia è favorevole. Procedi con consapevolezza."],
+        ["NO","Per ora è meglio fermarsi e osservare ciò che sta accadendo."],
+        ["NON ANCORA","La risposta può arrivare, ma manca ancora un elemento."]
+    ];
 
- modal(`
-  <div class="result">
-   <h2>❓ La tua risposta</h2>
-   <div class="answer">${a[0]}</div>
-   <p>${a[1]}</p>
-  </div>
- `);
+    const a =
+        answers[Math.floor(Math.random()*answers.length)];
+
+    modal(`
+        <div class="result">
+            <h2>❓ La tua risposta</h2>
+            <div class="answer">${a[0]}</div>
+            <p>${a[1]}</p>
+        </div>
+    `);
 }
+
+
+/* ==========================================
+   SERVICE WORKER
+========================================== */
 
 if("serviceWorker" in navigator){
- navigator.serviceWorker.register("sw.js").catch(()=>{});
+
+    window.addEventListener("load", () => {
+
+        navigator.serviceWorker
+            .register("sw.js")
+            .catch(() => {});
+
+    });
 }
 
+
+/* ==========================================
+   INSTALLAZIONE PWA
+========================================== */
+
 let deferredInstallPrompt = null;
 
-window.addEventListener("beforeinstallprompt", event => {
-  event.preventDefault();
-  deferredInstallPrompt = event;
-  const button = document.getElementById("installApp");
-  if (button) button.hidden = false;
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-  const button = document.getElementById("installApp");
+/* Chrome comunica che Arcanea può essere installata */
 
-  if (button) {
-    button.addEventListener("click", async () => {
-      if (!deferredInstallPrompt) return;
-      deferredInstallPrompt.prompt();
-      await deferredInstallPrompt.userChoice;
-      deferredInstallPrompt = null;
-      button.hidden = true;
-    });
-  }
-});
+window.addEventListener(
+    "beforeinstallprompt",
+    event => {
 
-/* === POPUP INSTALLAZIONE ARCANEA === */
-(function(){
-  let installPrompt = null;
+        event.preventDefault();
 
-  const style = document.createElement("style");
-  style.textContent = `
-    #arcaneaInstallOverlay{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.72);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      z-index:99999;
-      padding:20px;
-    }
-    #arcaneaInstallBox{
-      width:min(420px,100%);
-      background:#101b17;
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:24px;
-      padding:28px 22px;
-      text-align:center;
-      box-shadow:0 20px 60px rgba(0,0,0,.5);
-      color:#fff;
-    }
-    #arcaneaInstallBox .install-logo{
-      width:82px;
-      height:82px;
-      object-fit:contain;
-      margin-bottom:10px;
-    }
-    #arcaneaInstallBox h2{
-      margin:8px 0 10px;
-    }
-    #arcaneaInstallBox p{
-      line-height:1.5;
-      opacity:.9;
-    }
-    #arcaneaInstallBtn{
-      width:100%;
-      padding:15px;
-      border:0;
-      border-radius:14px;
-      font-weight:bold;
-      font-size:16px;
-      margin-top:14px;
-      cursor:pointer;
-    }
-    #arcaneaInstallClose{
-      background:transparent;
-      color:#aaa;
-      border:0;
-      margin-top:12px;
-      padding:10px;
-      cursor:pointer;
-    }
-  `;
-  document.head.appendChild(style);
+        deferredInstallPrompt = event;
 
-  window.addEventListener("beforeinstallprompt", event => {
-    event.preventDefault();
-    installPrompt = event;
-  });
+        const button =
+            document.getElementById("install");
 
-  function isInstalled(){
-    return window.matchMedia("(display-mode: standalone)").matches ||
-           window.navigator.standalone === true;
-  }
-
-  function showInstallPopup(){
-    if(isInstalled()) return;
-    if(document.getElementById("arcaneaInstallOverlay")) return;
-
-    const overlay = document.createElement("div");
-    overlay.id = "arcaneaInstallOverlay";
-
-    overlay.innerHTML = `
-      <div id="arcaneaInstallBox">
-        <img class="install-logo" src="assets/logo.png" alt="Arcanea Italia">
-        <h2>🔮 ARCANEA ITALIA</h2>
-        <p>
-          Porta Arcanea direttamente sulla schermata Home
-          e aprila come una vera app.
-        </p>
-
-        <button id="arcaneaInstallBtn">
-          📲 INSTALLA ARCANEA
-        </button>
-
-        <button id="arcaneaInstallClose">
-          Continua sul sito
-        </button>
-      </div>
-    `;
-
-    document.body.appendChild(overlay);
-
-    document.getElementById("arcaneaInstallClose").onclick = () => {
-      overlay.remove();
-    };
-
-    document.getElementById("arcaneaInstallBtn").onclick = async () => {
-      if(installPrompt){
-        await installPrompt.prompt();
-        installPrompt = null;
-        overlay.remove();
-        return;
-      }
-
-      const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
-
-      if(ios){
-        alert("Su iPhone: premi Condividi → Aggiungi alla schermata Home.");
-      } else {
-        alert("Apri il menu del browser e scegli «Installa app» oppure «Aggiungi alla schermata Home».");
-      }
-    };
-  }
-
-  window.addEventListener("load", () => {
-    setTimeout(showInstallPopup, 1200);
-  });
-
-  window.addEventListener("appinstalled", () => {
-    const overlay = document.getElementById("arcaneaInstallOverlay");
-    if(overlay) overlay.remove();
-  });
-})();
-
-/* === INSTALLAZIONE FACILE ARCANEA === */
-(function(){
-  let deferredPrompt = null;
-
-  window.addEventListener("beforeinstallprompt", function(e){
-    e.preventDefault();
-    deferredPrompt = e;
-  });
-
-  window.addEventListener("load", function(){
-    if (window.matchMedia("(display-mode: standalone)").matches) return;
-    if (window.navigator.standalone === true) return;
-    if (document.getElementById("arcanea-install-card")) return;
-
-    const card = document.createElement("div");
-    card.id = "arcanea-install-card";
-
-    card.innerHTML = `
-      <strong>🔮 Porta ARCANEA con te</strong>
-      <span>Installa Arcanea sulla schermata Home.</span>
-      <button id="arcanea-install-now">📲 INSTALLA ARCANEA</button>
-      <button class="close-install" id="arcanea-install-close">Continua sul sito</button>
-    `;
-
-    document.body.appendChild(card);
-
-    document.getElementById("arcanea-install-close").onclick = function(){
-      card.remove();
-    };
-
-    document.getElementById("arcanea-install-now").onclick = async function(){
-      if (deferredPrompt) {
-        await deferredPrompt.prompt();
-        deferredPrompt = null;
-        return;
-      }
-
-      alert(
-        "Per installare Arcanea: apri il menu ⋮ di Chrome e scegli «Installa app»."
-      );
-    };
-  });
-})();
-let deferredInstallPrompt = null;
-
-window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredInstallPrompt = e;
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    const btn = document.getElementById("install");
-
-    if (!btn) return;
-
-    btn.onclick = async () => {
-        if (deferredInstallPrompt) {
-            await deferredInstallPrompt.prompt();
-            deferredInstallPrompt = null;
-        } else {
-            alert("Apri il menu ⋮ di Chrome e scegli «Installa app».");
+        if(button){
+            button.style.display = "block";
         }
-    };
-});
+
+    }
+);
+
+
+/* Pulsante INSTALLA */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const installButton =
+            document.getElementById("install");
+
+        const closeButton =
+            document.getElementById("install-close");
+
+        const installBox =
+            document.getElementById("arcanea-install");
+
+
+        if(installButton){
+
+            installButton.addEventListener(
+                "click",
+                async () => {
+
+                    if(deferredInstallPrompt){
+
+                        deferredInstallPrompt.prompt();
+
+                        await deferredInstallPrompt.userChoice;
+
+                        deferredInstallPrompt = null;
+
+                        return;
+                    }
+
+
+                    /* iPhone */
+
+                    const ios =
+                        /iphone|ipad|ipod/i.test(
+                            navigator.userAgent
+                        );
+
+
+                    if(ios){
+
+                        alert(
+                            "Per installare Arcanea su iPhone: " +
+                            "tocca Condividi e poi " +
+                            "Aggiungi alla schermata Home."
+                        );
+
+                        return;
+                    }
+
+
+                    /* Android quando Chrome non espone il prompt */
+
+                    alert(
+                        "Per installare Arcanea: " +
+                        "apri il menu ⋮ di Chrome e scegli " +
+                        "«Installa app»."
+                    );
+
+                }
+            );
+
+        }
+
+
+        if(closeButton){
+
+            closeButton.addEventListener(
+                "click",
+                () => {
+
+                    if(installBox){
+                        installBox.style.display = "none";
+                    }
+
+                }
+            );
+
+        }
+
+    }
+);
+
+
+/* ==========================================
+   RIMOZIONE RIQUADRO DOPO INSTALLAZIONE
+========================================== */
+
+window.addEventListener(
+    "appinstalled",
+    () => {
+
+        const box =
+            document.getElementById("arcanea-install");
+
+        if(box){
+            box.style.display = "none";
+        }
+
+        deferredInstallPrompt = null;
+
+    }
+);
