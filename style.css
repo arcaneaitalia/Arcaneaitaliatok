@@ -452,3 +452,74 @@ footer strong{
         font-size: 11px;
     }
 }
+
+
+/* =========================================
+   ARCANEA SERVICE PREVIEW
+========================================= */
+
+.service-preview {
+    text-align: center;
+    padding: 10px 4px 4px;
+}
+
+.service-preview-icon {
+    font-size: 38px;
+    margin-bottom: 8px;
+}
+
+.service-preview-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    opacity: .55;
+    margin-bottom: 5px;
+}
+
+.service-preview h2 {
+    margin: 0 0 15px;
+    font-size: 22px;
+}
+
+.service-preview-main {
+    font-size: 15px;
+    line-height: 1.55;
+    margin: 0 auto 16px;
+    max-width: 430px;
+}
+
+.service-preview-divider {
+    width: 55px;
+    height: 1px;
+    margin: 18px auto;
+    background: rgba(255,255,255,.25);
+}
+
+.service-preview-detail {
+    font-size: 13px;
+    line-height: 1.5;
+    opacity: .68;
+    margin-bottom: 22px;
+}
+
+.service-preview-button {
+    width: 100%;
+    border: 0;
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-weight: 700;
+    letter-spacing: .7px;
+    cursor: pointer;
+    background: rgba(255,255,255,.13);
+    color: inherit;
+}
+
+.service-preview-button:active {
+    transform: scale(.98);
+}
+
+/* install card sempre visibile */
+
+.arcanea-install {
+    display: block;
+}
+
