@@ -1,5 +1,5 @@
 /* ARCANEA VERSION 20260909-02 */
-const CACHE="arcanea-v1";
+const CACHE="arcanea-v20260909-03";
 
 const FILES=[
  "./",
