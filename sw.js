@@ -1,3 +1,4 @@
+/* ARCANEA VERSION 20260909-02 */
 const CACHE="arcanea-v1";
 
 const FILES=[
