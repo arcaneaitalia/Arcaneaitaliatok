@@ -59,123 +59,187 @@ function openSetmore(){
 
 function openService(type){
 
-    const services = {
+    const data = {
 
-        natal: {
-            icon: "✨",
-            title: "Tema Natale",
+        natal:{
+            title:"✨ Tema Natale",
+            intro:"Una prima lettura gratuita del tuo cielo di nascita.",
+            preview:`
+                <div class="free-reading">
+                    <div class="free-label">ANTEPRIMA GRATUITA</div>
 
-            intro:
-                "La tua nascita contiene una trama simbolica unica.",
+                    <h3>🌙 Cosa osserva Arcanea</h3>
 
-            previewTitle:
-                "IL PRIMO SEGNO",
+                    <p>
+                        Il Tema Natale nasce dall'incontro tra
+                        <strong>data, ora e luogo di nascita</strong>.
+                        Da questi elementi emerge una struttura
+                        simbolica personale.
+                    </p>
 
-            preview:
-                "Il Tema Natale osserva le principali energie presenti al momento della nascita e le trasforma in una lettura simbolica personale.",
+                    <div class="mini-reading">
+                        <span>☀️</span>
+                        <div>
+                            <strong>IDENTITÀ</strong>
+                            <p>
+                                Il Sole rappresenta il centro
+                                dell'espressione personale:
+                                ciò che vuoi sviluppare e manifestare.
+                            </p>
+                        </div>
+                    </div>
 
-            insight:
-                "L'analisi completa approfondisce personalità, talenti, dinamiche emotive e direzioni del tuo percorso.",
+                    <div class="mini-reading">
+                        <span>🌙</span>
+                        <div>
+                            <strong>MONDO INTERIORE</strong>
+                            <p>
+                                La Luna mostra bisogni emotivi,
+                                sensibilità e modalità istintive.
+                            </p>
+                        </div>
+                    </div>
 
-            button:
-                "CONTINUA CON IL TEMA NATALE"
+                    <div class="preview-note">
+                        Questa è solo una prima chiave di lettura.
+                        L'analisi completa approfondisce la tua
+                        configurazione personale.
+                    </div>
+                </div>
+            `
         },
 
-        compatibility: {
-            icon: "💞",
-            title: "Compatibilità",
+        compatibility:{
+            title:"💞 Compatibilità",
+            intro:"Una prima lettura gratuita della dinamica tra due persone.",
+            preview:`
+                <div class="free-reading">
+                    <div class="free-label">ANTEPRIMA GRATUITA</div>
 
-            intro:
-                "Due persone possono creare una dinamica completamente diversa da ciò che sembrano singolarmente.",
+                    <h3>💫 Cosa osserva Arcanea</h3>
 
-            previewTitle:
-                "IL PRIMO SEGNO",
+                    <p>
+                        La Compatibilità mette in relazione
+                        le due firme personali per osservare
+                        <strong>attrazione, comunicazione e punti di tensione</strong>.
+                    </p>
 
-            preview:
-                "La lettura mette in relazione le due energie per individuare affinità, differenze e punti di tensione.",
+                    <div class="mini-reading">
+                        <span>💞</span>
+                        <div>
+                            <strong>CONNESSIONE</strong>
+                            <p>
+                                Una relazione può essere intensa
+                                quando le energie personali
+                                si riconoscono e si completano.
+                            </p>
+                        </div>
+                    </div>
 
-            insight:
-                "L'analisi completa entra nella dinamica della relazione e nei suoi principali punti di incontro.",
+                    <div class="mini-reading">
+                        <span>🗣️</span>
+                        <div>
+                            <strong>COMUNICAZIONE</strong>
+                            <p>
+                                Il modo in cui due persone
+                                esprimono bisogni e pensieri
+                                può creare armonia oppure distanza.
+                            </p>
+                        </div>
+                    </div>
 
-            button:
-                "CONTINUA CON LA COMPATIBILITÀ"
+                    <div class="preview-note">
+                        L'anteprima mostra il principio della lettura.
+                        L'analisi completa entra nella dinamica specifica
+                        della coppia.
+                    </div>
+                </div>
+            `
         },
 
-        matrix: {
-            icon: "🜂",
-            title: "Matrice Arcanea®",
+        matrix:{
+            title:"🜂 Matrice Arcanea®",
+            intro:"Una prima lettura gratuita attraverso il metodo Arcanea.",
+            preview:`
+                <div class="free-reading">
+                    <div class="free-label">ANTEPRIMA GRATUITA</div>
 
-            intro:
-                "Una firma può essere osservata attraverso più livelli simbolici.",
+                    <h3>🔮 La tua firma simbolica</h3>
 
-            previewTitle:
-                "IL PRIMO LIVELLO",
+                    <p>
+                        La Matrice Arcanea® parte da una
+                        <strong>firma</strong>: un nome, una data,
+                        una parola o un evento.
+                    </p>
 
-            preview:
-                "La Matrice Arcanea® parte dalla firma originaria e osserva lettere, numeri e corrispondenze per arrivare alla Chiave Arcanea.",
+                    <div class="matrix-demo">
+                        <div class="matrix-number">1</div>
+                        <div class="matrix-number">5</div>
+                        <div class="matrix-number">9</div>
+                        <div class="matrix-number">16</div>
+                    </div>
 
-            insight:
-                "La lettura completa sviluppa i diversi livelli della Matrice e costruisce la tua interpretazione personale.",
+                    <div class="mini-reading">
+                        <span>🔢</span>
+                        <div>
+                            <strong>SCOMPOSIZIONE</strong>
+                            <p>
+                                La firma viene trasformata in una
+                                sequenza numerica attraverso i livelli
+                                della Matrice.
+                            </p>
+                        </div>
+                    </div>
 
-            button:
-                "CONTINUA CON LA MATRICE"
+                    <div class="mini-reading">
+                        <span>🜂</span>
+                        <div>
+                            <strong>CHIAVE ARCANEА</strong>
+                            <p>
+                                Dalla convergenza dei valori emerge
+                                una chiave simbolica da interpretare.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="preview-note">
+                        Questa è una dimostrazione del metodo.
+                        La Matrice completa viene costruita sulla
+                        tua firma personale.
+                    </div>
+                </div>
+            `
         }
 
-    };
+    }[type];
 
-    const data = services[type];
-
-    if(!data){
-        return;
-    }
+    if(!data) return;
 
     modal(`
-
-        <div class="arcanea-service">
-
-            <div class="arcanea-service-icon">
-                ${data.icon}
-            </div>
-
-            <div class="arcanea-service-brand">
-                ARCANEA ITALIA
-            </div>
+        <div class="service">
 
             <h2>${data.title}</h2>
 
-            <p class="arcanea-service-intro">
+            <p class="service-intro">
                 ${data.intro}
             </p>
 
-            <div class="arcanea-service-preview">
+            ${data.preview}
 
-                <span>
-                    ${data.previewTitle}
-                </span>
+            <div class="continue-box">
 
                 <p>
-                    ${data.preview}
+                    ✨ Vuoi ricevere la lettura completa?
                 </p>
+
+                <button class="action"
+                    onclick="continueService('${type}')">
+                    CONTINUA CON LA LETTURA →
+                </button>
 
             </div>
 
-            <p class="arcanea-service-insight">
-                ${data.insight}
-            </p>
-
-            <div class="arcanea-service-separator"></div>
-
-            <button
-                class="arcanea-service-button"
-                onclick="continueService('${type}')"
-                type="button">
-
-                ${data.button}
-
-            </button>
-
         </div>
-
     `);
 }
 
