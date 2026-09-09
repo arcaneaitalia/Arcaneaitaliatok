@@ -322,3 +322,133 @@ footer strong{
   color:#aaa;
   padding:8px;
 }
+
+
+/* =========================================
+   ARCANEA INSTALL CARD
+========================================= */
+
+.arcanea-install {
+    margin: 22px 0 28px;
+    padding: 14px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.07),
+            rgba(255,255,255,.025)
+        );
+
+    border: 1px solid rgba(255,255,255,.14);
+
+    box-shadow:
+        0 8px 30px rgba(0,0,0,.20);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+.arcanea-install-content {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+}
+
+.arcanea-install-symbol {
+    width: 48px;
+    height: 48px;
+
+    flex: 0 0 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 15px;
+
+    background: rgba(255,255,255,.07);
+
+    font-size: 24px;
+}
+
+.arcanea-install-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.arcanea-install-text strong {
+    display: block;
+
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.arcanea-install-text span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 12px;
+    line-height: 1.35;
+
+    opacity: .68;
+}
+
+#install {
+    flex-shrink: 0;
+
+    border: 0;
+    border-radius: 12px;
+
+    padding: 11px 14px;
+
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .5px;
+
+    cursor: pointer;
+
+    background: rgba(255,255,255,.13);
+    color: inherit;
+
+    transition:
+        transform .15s ease,
+        background .15s ease;
+}
+
+#install:hover {
+    background: rgba(255,255,255,.20);
+}
+
+#install:active {
+    transform: scale(.96);
+}
+
+@media (max-width: 420px) {
+
+    .arcanea-install-content {
+        gap: 10px;
+    }
+
+    .arcanea-install-symbol {
+        width: 43px;
+        height: 43px;
+        flex-basis: 43px;
+        font-size: 21px;
+    }
+
+    .arcanea-install-text strong {
+        font-size: 13px;
+    }
+
+    .arcanea-install-text span {
+        font-size: 11px;
+    }
+
+    #install {
+        padding: 10px 12px;
+        font-size: 11px;
+    }
+}
