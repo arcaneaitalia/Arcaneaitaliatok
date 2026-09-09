@@ -523,3 +523,277 @@ footer strong{
     display: block;
 }
 
+
+
+/* =========================================
+   ARCANEA FINAL SERVICE DESIGN
+========================================= */
+
+.arcanea-install {
+    margin: 6px 0 22px;
+    padding: 11px 12px;
+
+    border: 1px solid rgba(199,183,123,.30);
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(38,60,51,.92),
+            rgba(16,26,22,.96)
+        );
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.28);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.arcanea-install-content {
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.arcanea-install-symbol {
+    width:42px;
+    height:42px;
+    flex:0 0 42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:13px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(215,198,141,.18),
+            rgba(255,255,255,.03)
+        );
+
+    border:1px solid rgba(215,198,141,.22);
+
+    font-size:21px;
+}
+
+.arcanea-install-text {
+    flex:1;
+    min-width:0;
+}
+
+.arcanea-install-text strong {
+    display:block;
+    color:#e0cd82;
+    font-family:Cinzel,serif;
+    font-size:12px;
+    letter-spacing:1.2px;
+}
+
+.arcanea-install-text span {
+    display:block;
+    margin-top:3px;
+
+    font-size:10px;
+    line-height:1.35;
+    opacity:.62;
+}
+
+#install {
+    border:1px solid rgba(224,205,130,.55);
+    border-radius:999px;
+
+    padding:9px 13px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #c4ad5d,
+            #e0cd82
+        );
+
+    color:#171b16;
+
+    font-family:Montserrat,sans-serif;
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:.7px;
+
+    white-space:nowrap;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 4px 12px rgba(0,0,0,.22);
+
+    transition:
+        transform .15s ease,
+        filter .15s ease;
+}
+
+#install:active {
+    transform:scale(.96);
+}
+
+#install:hover {
+    filter:brightness(1.08);
+}
+
+
+/* =========================================
+   ANTEPRIME SERVIZI ARCANEA
+========================================= */
+
+.arcanea-service {
+    text-align:center;
+    padding:5px 2px 2px;
+}
+
+.arcanea-service-icon {
+    font-size:42px;
+    line-height:1;
+    margin-bottom:9px;
+
+    filter:drop-shadow(
+        0 4px 10px rgba(0,0,0,.35)
+    );
+}
+
+.arcanea-service-brand {
+    font-family:Cinzel,serif;
+    font-size:9px;
+    letter-spacing:2.5px;
+    color:#cfc18a;
+    opacity:.75;
+    margin-bottom:7px;
+}
+
+.arcanea-service h2 {
+    font-family:Cinzel,serif;
+    color:#e0cd82;
+    font-size:24px;
+    margin-bottom:12px;
+}
+
+.arcanea-service-intro {
+    max-width:440px;
+    margin:0 auto 20px;
+
+    font-size:14px;
+    line-height:1.65;
+
+    opacity:.88;
+}
+
+.arcanea-service-preview {
+    margin:0 auto 18px;
+    padding:19px 17px;
+
+    max-width:470px;
+
+    border-radius:19px;
+
+    border:1px solid rgba(199,183,123,.30);
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(61,89,71,.65),
+            rgba(17,27,22,.82)
+        );
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.04);
+}
+
+.arcanea-service-preview span {
+    display:block;
+
+    margin-bottom:9px;
+
+    font-family:Cinzel,serif;
+
+    font-size:10px;
+    letter-spacing:2px;
+
+    color:#e0cd82;
+}
+
+.arcanea-service-preview p {
+    margin:0;
+
+    font-size:14px;
+    line-height:1.65;
+}
+
+.arcanea-service-insight {
+    max-width:440px;
+    margin:0 auto 19px;
+
+    font-size:12px !important;
+    line-height:1.55 !important;
+
+    opacity:.62 !important;
+}
+
+.arcanea-service-separator {
+    width:42px;
+    height:1px;
+
+    margin:0 auto 19px;
+
+    background:#c7b77b66;
+}
+
+.arcanea-service-button {
+    width:100%;
+
+    border:0;
+    border-radius:999px;
+
+    padding:14px 18px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #c4ad5d,
+            #e0cd82
+        );
+
+    color:#171b16;
+
+    font-weight:700;
+    letter-spacing:.7px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 7px 20px rgba(0,0,0,.28);
+}
+
+.arcanea-service-button:active {
+    transform:scale(.98);
+}
+
+@media(max-width:420px){
+
+    .arcanea-install-text span{
+        font-size:9px;
+    }
+
+    #install{
+        padding:8px 11px;
+        font-size:9px;
+    }
+
+    .arcanea-service h2{
+        font-size:21px;
+    }
+
+    .arcanea-service-preview{
+        padding:16px 14px;
+    }
+
+}

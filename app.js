@@ -59,47 +59,123 @@ function openSetmore(){
 
 function openService(type){
 
-    const data = {
-        natal:{
-            title:"✨ Tema Natale",
-            text:"Inserisci i tuoi dati di nascita per ricevere un primo orientamento astrologico. L'analisi completa viene effettuata tramite Arcanea Italia.",
-            preview:"L'estratto ti permette di entrare nella lettura. Per ricevere il Tema Natale completo puoi prenotare direttamente il servizio."
+    const services = {
+
+        natal: {
+            icon: "✨",
+            title: "Tema Natale",
+
+            intro:
+                "La tua nascita contiene una trama simbolica unica.",
+
+            previewTitle:
+                "IL PRIMO SEGNO",
+
+            preview:
+                "Il Tema Natale osserva le principali energie presenti al momento della nascita e le trasforma in una lettura simbolica personale.",
+
+            insight:
+                "L'analisi completa approfondisce personalità, talenti, dinamiche emotive e direzioni del tuo percorso.",
+
+            button:
+                "CONTINUA CON IL TEMA NATALE"
         },
 
-        compatibility:{
-            title:"💞 Compatibilità",
-            text:"Confronta due temi e scopri le principali dinamiche simboliche della relazione.",
-            preview:"Ricevi un primo orientamento sulla connessione. Per l'analisi completa prenota il servizio."
+        compatibility: {
+            icon: "💞",
+            title: "Compatibilità",
+
+            intro:
+                "Due persone possono creare una dinamica completamente diversa da ciò che sembrano singolarmente.",
+
+            previewTitle:
+                "IL PRIMO SEGNO",
+
+            preview:
+                "La lettura mette in relazione le due energie per individuare affinità, differenze e punti di tensione.",
+
+            insight:
+                "L'analisi completa entra nella dinamica della relazione e nei suoi principali punti di incontro.",
+
+            button:
+                "CONTINUA CON LA COMPATIBILITÀ"
         },
 
-        matrix:{
-            title:"🜂 Matrice Arcanea®",
-            text:"La Matrice Arcanea® osserva una firma attraverso diversi livelli simbolici per arrivare alla Chiave Arcanea.",
-            preview:"Scopri il metodo e richiedi la tua Matrice Arcanea® completa attraverso Arcanea Italia."
+        matrix: {
+            icon: "🜂",
+            title: "Matrice Arcanea®",
+
+            intro:
+                "Una firma può essere osservata attraverso più livelli simbolici.",
+
+            previewTitle:
+                "IL PRIMO LIVELLO",
+
+            preview:
+                "La Matrice Arcanea® parte dalla firma originaria e osserva lettere, numeri e corrispondenze per arrivare alla Chiave Arcanea.",
+
+            insight:
+                "La lettura completa sviluppa i diversi livelli della Matrice e costruisce la tua interpretazione personale.",
+
+            button:
+                "CONTINUA CON LA MATRICE"
         }
-    }[type];
 
-    if(!data) return;
+    };
+
+    const data = services[type];
+
+    if(!data){
+        return;
+    }
 
     modal(`
-        <div class="service">
-            <h2>${data.title}</h2>
-            <p>${data.text}</p>
 
-            <div class="preview">
-                ${data.preview}
+        <div class="arcanea-service">
+
+            <div class="arcanea-service-icon">
+                ${data.icon}
             </div>
 
-            <p>
-                Il pagamento avviene direttamente tramite
-                <strong>Setmore</strong>.
+            <div class="arcanea-service-brand">
+                ARCANEA ITALIA
+            </div>
+
+            <h2>${data.title}</h2>
+
+            <p class="arcanea-service-intro">
+                ${data.intro}
             </p>
 
-            <button class="action"
-                onclick="window.open('${SERVICES[type]}','_blank')">
-                PRENOTA / ACQUISTA SU SETMORE
+            <div class="arcanea-service-preview">
+
+                <span>
+                    ${data.previewTitle}
+                </span>
+
+                <p>
+                    ${data.preview}
+                </p>
+
+            </div>
+
+            <p class="arcanea-service-insight">
+                ${data.insight}
+            </p>
+
+            <div class="arcanea-service-separator"></div>
+
+            <button
+                class="arcanea-service-button"
+                onclick="continueService('${type}')"
+                type="button">
+
+                ${data.button}
+
             </button>
+
         </div>
+
     `);
 }
 
@@ -212,12 +288,14 @@ function question(){
 
 function continueService(key){
 
-    if(SERVICES[key]){
-        window.open(
-            SERVICES[key],
-            "_blank"
-        );
+    if(!SERVICES[key]){
+        return;
     }
+
+    window.open(
+        SERVICES[key],
+        "_blank"
+    );
 
 }
 
